@@ -1,91 +1,608 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embedded Engineer | truongtx</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; color: #333; }
-        header { background-color: #007acc; color: white; padding: 2rem; text-align: center; }
-        header h1 { font-size: 2.5rem; margin: 0; }
-        header p { font-size: 1.2rem; }
-        .section { padding: 2rem; margin: auto; max-width: 900px; }
-        h2 { color: #007acc; }
-        ul { list-style-type: none; padding: 0; }
-        ul li { margin: 0.5rem 0; }
-        .code { background-color: #f4f4f4; padding: 10px; font-family: monospace; }
-        .project { margin-bottom: 1.5rem; }
-        footer { background-color: #333; color: white; padding: 1rem; text-align: center; }
-        a { color: #007acc; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ĐiệnTrường Pro – Sửa Chữa Điện Lạnh & Điện Dân Dụng</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #0a3cff;
+    --ice: #d4eeff;
+    --dark: #04112e;
+    --white: #f8fbff;
+    --orange: #ff6b1a;
+    --gray: #8fa3bf;
+    --card-bg: #0d2451;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--dark);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ───── NAV ───── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 1rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(4,17,46,.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,.07);
+  }
+  .nav-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem; font-weight: 900; letter-spacing: 1px;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--orange); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--gray); text-decoration: none; font-weight: 600; font-size: .95rem; transition: color .2s; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    background: var(--orange); color: #fff; border: none;
+    padding: .6rem 1.4rem; border-radius: 30px;
+    font-family: 'Nunito', sans-serif; font-weight: 700; font-size: .95rem;
+    cursor: pointer; text-decoration: none; transition: transform .2s, box-shadow .2s;
+  }
+  .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,107,26,.4); }
+
+  /* ───── HERO ───── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 7rem 6% 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 70% at 80% 50%, rgba(10,60,255,.18) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 50% at 20% 80%, rgba(255,107,26,.12) 0%, transparent 60%);
+  }
+  /* Grid dots background */
+  .hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
+    background-size: 36px 36px;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 600px; }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(10,60,255,.2); border: 1px solid rgba(10,60,255,.5);
+    color: var(--ice); font-size: .82rem; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; padding: .4rem 1rem; border-radius: 20px;
+    margin-bottom: 1.4rem;
+    animation: fadeUp .8s ease both;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 900; line-height: 1.05;
+    text-transform: uppercase; letter-spacing: -1px;
+    animation: fadeUp .8s .15s ease both;
+  }
+  .hero h1 .accent { color: var(--orange); display: block; }
+  .hero p {
+    margin-top: 1.2rem; color: var(--gray);
+    font-size: 1.05rem; line-height: 1.7; max-width: 480px;
+    animation: fadeUp .8s .3s ease both;
+  }
+  .hero-actions {
+    margin-top: 2.2rem; display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp .8s .45s ease both;
+  }
+  .btn-primary {
+    background: var(--orange); color: #fff;
+    padding: .85rem 2rem; border-radius: 40px;
+    font-weight: 700; font-size: 1rem; text-decoration: none;
+    display: inline-flex; align-items: center; gap: .5rem;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255,107,26,.4); }
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,.2); color: var(--white);
+    padding: .85rem 2rem; border-radius: 40px;
+    font-weight: 700; font-size: 1rem; text-decoration: none;
+    transition: border-color .2s, background .2s;
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,.6); background: rgba(255,255,255,.05); }
+
+  .hero-stats {
+    margin-top: 3rem; display: flex; gap: 2.5rem; flex-wrap: wrap;
+    animation: fadeUp .8s .6s ease both;
+  }
+  .stat-item { }
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2.4rem; font-weight: 900; color: var(--white);
+    line-height: 1;
+  }
+  .stat-num span { color: var(--orange); }
+  .stat-label { font-size: .82rem; color: var(--gray); font-weight: 600; margin-top: .2rem; }
+
+  /* Floating image group */
+  .hero-visual {
+    position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+    width: 40%; max-width: 500px;
+    animation: float 4s ease-in-out infinite;
+    z-index: 1;
+  }
+  @media(max-width:900px){ .hero-visual{ display:none; } }
+
+  .device-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+  .device-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 16px; padding: 1.4rem;
+    display: flex; flex-direction: column; align-items: center; gap: .6rem;
+    transition: transform .3s;
+  }
+  .device-card:hover { transform: scale(1.04); }
+  .device-icon { font-size: 2.8rem; }
+  .device-name { font-size: .82rem; font-weight: 700; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; }
+  .device-card.featured {
+    background: linear-gradient(135deg, #0a3cff22, #0a3cff44);
+    border-color: rgba(10,60,255,.4);
+  }
+
+  /* ───── SERVICES ───── */
+  section { padding: 5rem 6%; }
+  .section-label {
+    font-size: .78rem; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--orange); margin-bottom: .8rem;
+  }
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
+    line-height: 1.1; text-transform: uppercase;
+  }
+  .section-title span { color: var(--blue); }
+
+  .services-grid {
+    margin-top: 3rem;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+  .service-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 20px; padding: 2rem;
+    position: relative; overflow: hidden;
+    transition: transform .3s, box-shadow .3s;
+    cursor: default;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--orange);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .3s;
+  }
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,.4); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-ico { font-size: 2.4rem; margin-bottom: 1rem; }
+  .service-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.35rem; font-weight: 700; text-transform: uppercase;
+    margin-bottom: .6rem;
+  }
+  .service-card p { color: var(--gray); font-size: .9rem; line-height: 1.6; }
+  .service-tag {
+    display: inline-block; margin-top: 1rem;
+    background: rgba(10,60,255,.2); color: var(--ice);
+    font-size: .72rem; font-weight: 700; padding: .25rem .7rem;
+    border-radius: 12px; letter-spacing: 1px; text-transform: uppercase;
+  }
+
+  /* ───── WHY US ───── */
+  .why-us { background: linear-gradient(180deg, transparent, rgba(10,60,255,.06), transparent); }
+  .why-grid {
+    margin-top: 3rem;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+  }
+  .why-item { text-align: center; }
+  .why-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 3.5rem; font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--orange);
+    line-height: 1;
+  }
+  .why-item h4 { font-size: 1rem; font-weight: 700; margin: .6rem 0 .4rem; }
+  .why-item p { color: var(--gray); font-size: .88rem; line-height: 1.5; }
+
+  /* ───── PROCESS ───── */
+  .process-steps {
+    margin-top: 3rem;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 0;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute; top: 32px; left: 10%; right: 10%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--blue), transparent);
+  }
+  .step {
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; padding: 0 1rem;
+    position: relative; z-index: 1;
+  }
+  .step-num {
+    width: 64px; height: 64px;
+    background: var(--dark); border: 2px solid var(--blue);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.6rem; font-weight: 900;
+    color: var(--blue); margin-bottom: 1.2rem;
+  }
+  .step h4 { font-weight: 700; margin-bottom: .4rem; }
+  .step p { color: var(--gray); font-size: .85rem; line-height: 1.5; }
+
+  /* ───── TESTIMONIALS ───── */
+  .testimonials-grid {
+    margin-top: 3rem;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(270px,1fr));
+    gap: 1.5rem;
+  }
+  .tcard {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 20px; padding: 1.8rem;
+  }
+  .tcard-stars { color: #fbbf24; font-size: 1rem; margin-bottom: 1rem; }
+  .tcard p { color: var(--gray); font-size: .92rem; line-height: 1.65; font-style: italic; }
+  .tcard-author { display: flex; align-items: center; gap: .8rem; margin-top: 1.2rem; }
+  .tcard-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--orange));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 1rem;
+  }
+  .tcard-name { font-weight: 700; font-size: .92rem; }
+  .tcard-loc { font-size: .78rem; color: var(--gray); }
+
+  /* ───── CTA BANNER ───── */
+  .cta-banner {
+    background: linear-gradient(135deg, var(--blue) 0%, #0a2aaa 100%);
+    border-radius: 28px; margin: 0 6%;
+    padding: 4rem 8%; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-banner::before {
+    content: '☎';
+    position: absolute; right: -2rem; top: -2rem;
+    font-size: 12rem; opacity: .06; line-height: 1;
+  }
+  .cta-banner h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900;
+    text-transform: uppercase; margin-bottom: .8rem;
+  }
+  .cta-banner p { color: rgba(255,255,255,.75); max-width: 500px; margin: 0 auto 2rem; line-height: 1.6; }
+  .cta-phone {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 900;
+    color: var(--orange); display: block; margin-bottom: 1.5rem;
+    text-decoration: none; letter-spacing: 2px;
+    transition: opacity .2s;
+  }
+  .cta-phone:hover { opacity: .8; }
+
+  /* ───── FOOTER ───── */
+  footer {
+    padding: 3rem 6% 2rem;
+    border-top: 1px solid rgba(255,255,255,.07);
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem;
+  }
+  .footer-brand .nav-logo { font-size: 1.8rem; }
+  .footer-brand p { color: var(--gray); font-size: .88rem; max-width: 240px; margin-top: .6rem; line-height: 1.6; }
+  .footer-col h5 { font-weight: 700; margin-bottom: 1rem; font-size: .95rem; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+  .footer-col ul li a { color: var(--gray); text-decoration: none; font-size: .88rem; transition: color .2s; }
+  .footer-col ul li a:hover { color: var(--white); }
+  .footer-bottom {
+    text-align: center; padding: 1.5rem 6%;
+    color: var(--gray); font-size: .8rem;
+    border-top: 1px solid rgba(255,255,255,.05);
+  }
+
+  /* ───── KEYFRAMES ───── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(-50%); }
+    50% { transform: translateY(calc(-50% - 14px)); }
+  }
+
+  /* Scroll reveal */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s, transform .7s; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ───── RESPONSIVE ───── */
+  @media(max-width:600px){
+    nav { padding: .8rem 1.2rem; }
+    .nav-links { display: none; }
+    .hero { padding: 6rem 5% 3rem; }
+    .process-steps::before { display: none; }
+    section { padding: 4rem 5%; }
+    .cta-banner { margin: 0 4%; padding: 3rem 6%; }
+  }
+</style>
 </head>
 <body>
 
-    <header>
-        <h1>Truong Xuan (Tony)</h1>
-        <p>Embedded Systems Engineer | Firmware Development | IoT Solutions</p>
-    </header>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Điện<span>Lạnh</span>Pro</a>
+  <ul class="nav-links">
+    <li><a href="#dich-vu">Dịch Vụ</a></li>
+    <li><a href="#quy-trinh">Quy Trình</a></li>
+    <li><a href="#danh-gia">Đánh Giá</a></li>
+    <li><a href="#lien-he">Liên Hệ</a></li>
+  </ul>
+  <a href="tel:0356299082" class="nav-cta">📞 Gọi Ngay</a>
+</nav>
 
-    <div class="section">
-        <h2>About Me</h2>
-        <p>Experienced embedded engineer with expertise in microcontroller programming, RTOS, and low-power IoT solutions. Skilled in C/C++, ARM Cortex, and communication protocols such as I2C, SPI, and UART. Passionate about creating efficient, reliable, and optimized embedded systems.</p>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">⚡ Dịch Vụ Uy Tín – Bảo Hành 12 Tháng</div>
+    <h1>
+      Sửa Chữa
+      <span class="accent">Điện Lạnh</span>
+      Chuyên Nghiệp
+    </h1>
+    <p>Đội ngũ kỹ thuật viên lành nghề, sửa chữa tại nhà nhanh chóng – đúng giờ. Tủ lạnh, máy lạnh, máy giặt, tivi và các thiết bị điện dân dụng.</p>
+    <div class="hero-actions">
+      <a href="tel:0356299082" class="btn-primary">📞 Gọi Ngay: 0356 299 082</a>
+      <a href="#dich-vu" class="btn-outline">Xem Dịch Vụ →</a>
     </div>
-
-    <div class="section">
-        <h2>Skills</h2>
-        <ul>
-            <li>Microcontroller Programming (ARM Cortex, AVR, ESP32)</li>
-            <li>Firmware Development (C/C++, Python)</li>
-            <li>Embedded Linux and RTOS (FreeRTOS, Zephyr)</li>
-            <li>Peripheral Drivers (GPIO, ADC, UART, SPI, I2C)</li>
-            <li>Communication Protocols (BLE, Wi-Fi, LoRa)</li>
-            <li>Low Power Design and Optimization</li>
-        </ul>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">5000<span>+</span></div>
+        <div class="stat-label">Khách Hàng Hài Lòng</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">10<span>+</span></div>
+        <div class="stat-label">Năm Kinh Nghiệm</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">60<span>ph</span></div>
+        <div class="stat-label">Có Mặt Trong</div>
+      </div>
     </div>
+  </div>
 
-    <div class="section">
-        <h2>Projects</h2>
+  <!-- Device visual -->
+  <div class="hero-visual">
+    <div class="device-grid">
+      <div class="device-card featured">
+        <div class="device-icon">❄️</div>
+        <div class="device-name">Điều Hòa</div>
+      </div>
+      <div class="device-card">
+        <div class="device-icon">🧊</div>
+        <div class="device-name">Tủ Lạnh</div>
+      </div>
+      <div class="device-card">
+        <div class="device-icon">📺</div>
+        <div class="device-name">Tivi</div>
+      </div>
+      <div class="device-card featured">
+        <div class="device-icon">🫧</div>
+        <div class="device-name">Máy Giặt</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <div class="project">
-            <h3>1. IoT Environmental Monitor</h3>
-            <p>Developed a wireless sensor network using ESP32 and LoRa communication to monitor environmental parameters. Implemented MQTT protocol for real-time data streaming to cloud platforms.</p>
-            <p><a href="https://github.com/xtruong91/cc2530f256">GitHub Repository</a></p>
+<!-- SERVICES -->
+<section id="dich-vu">
+  <div class="section-label">Dịch Vụ Của Chúng Tôi</div>
+  <div class="section-title">Sửa Mọi Thiết Bị,<br><span>Giải Quyết Mọi Sự Cố</span></div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-ico">❄️</div>
+      <h3>Điều Hòa – Máy Lạnh</h3>
+      <p>Sửa chữa, vệ sinh, nạp gas, lắp đặt tất cả hãng: Daikin, Panasonic, LG, Samsung, Midea, Toshiba…</p>
+      <span class="service-tag">Phổ biến nhất</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-ico">🧊</div>
+      <h3>Tủ Lạnh</h3>
+      <p>Không làm lạnh, đông không đều, chảy nước, ồn ào? Chúng tôi xử lý nhanh tại nhà bạn trong ngày.</p>
+      <span class="service-tag">Có mặt trong 60ph</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-ico">📺</div>
+      <h3>Tivi – Smart TV</h3>
+      <p>Màn hình hỏng, không lên hình, mất tiếng, lỗi main, hỏng nguồn – sửa chữa tất cả các thương hiệu.</p>
+      <span class="service-tag">LCD / OLED / QLED</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-ico">🫧</div>
+      <h3>Máy Giặt</h3>
+      <p>Máy không giặt, không vắt, báo lỗi, rung lắc, rò nước – sửa cửa ngang, cửa trên mọi hãng.</p>
+      <span class="service-tag">Lồng ngang / dọc</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-ico">🔌</div>
+      <h3>Điện Dân Dụng</h3>
+      <p>Sửa chữa điện trong nhà, thay bóng đèn, ổ cắm, CB, đi dây điện, lắp quạt trần, bình nóng lạnh…</p>
+      <span class="service-tag">Trọn gói</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-ico">🛠️</div>
+      <h3>Bảo Trì Định Kỳ</h3>
+      <p>Gói bảo trì hàng năm giúp thiết bị hoạt động bền bỉ, tiết kiệm điện và phòng ngừa hư hỏng lớn.</p>
+      <span class="service-tag">Tiết kiệm điện</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-us">
+  <div class="section-label">Tại Sao Chọn Chúng Tôi</div>
+  <div class="section-title">Cam Kết Chất Lượng,<br><span>Không Lo Rủi Ro</span></div>
+  <div class="why-grid">
+    <div class="why-item reveal">
+      <div class="why-num">01</div>
+      <h4>Thợ Được Chứng Nhận</h4>
+      <p>Kỹ thuật viên được đào tạo bài bản, có chứng chỉ điện lạnh chuyên nghiệp.</p>
+    </div>
+    <div class="why-item reveal">
+      <div class="why-num">02</div>
+      <h4>Báo Giá Rõ Ràng</h4>
+      <p>Báo giá miễn phí trước khi sửa, không phát sinh thêm chi phí sau khi xác nhận.</p>
+    </div>
+    <div class="why-item reveal">
+      <div class="why-num">03</div>
+      <h4>Bảo Hành 12 Tháng</h4>
+      <p>Cam kết bảo hành dài hạn cho cả linh kiện lẫn công sửa chữa.</p>
+    </div>
+    <div class="why-item reveal">
+      <div class="why-num">04</div>
+      <h4>Phục Vụ 7/7</h4>
+      <p>Hoạt động cả ngày lễ, Tết. Hỗ trợ khẩn cấp 24/7 cho các trường hợp cấp bách.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="quy-trinh">
+  <div class="section-label">Quy Trình Làm Việc</div>
+  <div class="section-title">Chỉ <span>4 Bước</span> Đơn Giản</div>
+  <div class="process-steps">
+    <div class="step reveal">
+      <div class="step-num">1</div>
+      <h4>Liên Hệ</h4>
+      <p>Gọi điện hoặc nhắn tin, mô tả sự cố thiết bị để được tư vấn ngay.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">2</div>
+      <h4>Đặt Lịch</h4>
+      <p>Chọn khung giờ phù hợp, thợ đến đúng giờ, cam kết đúng lịch hẹn.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">3</div>
+      <h4>Kiểm Tra & Báo Giá</h4>
+      <p>Chẩn đoán kỹ lưỡng, báo giá minh bạch trước khi tiến hành sửa chữa.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">4</div>
+      <h4>Sửa Chữa & Bàn Giao</h4>
+      <p>Hoàn thành sửa chữa, test kỹ lưỡng, bàn giao và cấp phiếu bảo hành.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="danh-gia">
+  <div class="section-label">Đánh Giá Khách Hàng</div>
+  <div class="section-title">Khách Hàng <span>Nói Gì</span> Về Chúng Tôi</div>
+  <div class="testimonials-grid">
+    <div class="tcard reveal">
+      <div class="tcard-stars">★★★★★</div>
+      <p>"Máy lạnh nhà tôi bị hỏng quạt dàn lạnh, gọi buổi sáng là buổi chiều thợ đến ngay. Sửa nhanh, giá hợp lý, rất chuyên nghiệp!"</p>
+      <div class="tcard-author">
+        <div class="tcard-avatar">T</div>
+        <div>
+          <div class="tcard-name">Chị Thanh Hương</div>
+          <div class="tcard-loc">Quận Cầu Giấy, Hà Nội</div>
         </div>
-
-        <div class="project">
-            <h3>2. Smart Home Automation System</h3>
-            <p>Designed and developed a home automation system with voice control using ARM Cortex microcontroller and BLE connectivity. Integrated with Alexa for seamless smart home control.</p>
-            <p><a href="https://github.com/xtruong91/tracking-pc">GitHub Repository</a></p>
+      </div>
+    </div>
+    <div class="tcard reveal">
+      <div class="tcard-stars">★★★★★</div>
+      <p>"Tủ lạnh mất lạnh đột ngột, lo lắng lắm. Thợ đến kiểm tra, phát hiện bị tắc gas và đã khắc phục trong 2 tiếng. Uy tín 100%!"</p>
+      <div class="tcard-author">
+        <div class="tcard-avatar">M</div>
+        <div>
+          <div class="tcard-name">Anh Minh Tuấn</div>
+          <div class="tcard-loc">Quận Bình Thạnh, TP.HCM</div>
         </div>
-
-        <div class="project">
-            <h3>3. Custom RTOS for Battery-Operated Devices</h3>
-            <p>Built a lightweight RTOS tailored for low-power devices, achieving significant power savings. Integrated with peripheral management and task scheduling for optimal performance.</p>
-            <p><a href="https://github.com/xtruong91/msp430g2553">GitHub Repository</a></p>
+      </div>
+    </div>
+    <div class="tcard reveal">
+      <div class="tcard-stars">★★★★★</div>
+      <p>"Tivi màn hình bị sọc, cứ tưởng phải mua cái mới. Thợ sửa xong chỉ mất 400k, giờ xem như mới. Cảm ơn rất nhiều!"</p>
+      <div class="tcard-author">
+        <div class="tcard-avatar">L</div>
+        <div>
+          <div class="tcard-name">Chị Lan Anh</div>
+          <div class="tcard-loc">Quận Hải Châu, Đà Nẵng</div>
         </div>
+      </div>
     </div>
+  </div>
+</section>
 
-    <div class="section">
-        <h2>Experience</h2>
-        <ul>
-            <li><strong>Embedded Software Engineer</strong> at Tech Solutions (2016-Present)</li>
-            <li><strong>Firmware Developer Intern</strong> at Embedded Innovations (2014-2016)</li>
-            <li><strong>Electronics Engineer</strong> at IoT Labs (2009-2014)</li>
-        </ul>
+<!-- CTA BANNER -->
+<div id="lien-he">
+  <div class="cta-banner reveal">
+    <h2>Thiết Bị Hỏng?<br>Gọi Ngay – Có Mặt Trong 60 Phút!</h2>
+    <p>Phục vụ tận nhà, báo giá miễn phí, bảo hành 12 tháng. Đừng để sự cố kéo dài!</p>
+    <a href="tel:0356299082" class="cta-phone">📞 0356 299 082</a>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="tel:0356299082" class="btn-primary">Gọi Điện Ngay</a>
+      <a href="https://zalo.me/0356299082" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,.3)">Nhắn Zalo</a>
     </div>
+  </div>
+</div>
 
-    <div class="section">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:truongtx91@gmail.com">truongtx91@gmail.com</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/truong-xuan-860bb6132/">Xuan Truong</a></p>
-        <p>WhatApp/ Telegram: +84 356 299 082</p>
-        <p>GitHub: <a href="https://github.com/xtruong91">Xuan Truong</a></p>
-    </div>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <a href="#" class="nav-logo">Điện<span style="color:var(--orange)">Trường</span>Pro</a>
+    <p>Dịch vụ sửa chữa điện lạnh – điện dân dụng uy tín, nhanh chóng, bảo hành dài hạn.</p>
+  </div>
+  <div class="footer-col">
+    <h5>Dịch Vụ</h5>
+    <ul>
+      <li><a href="#">Sửa Điều Hòa</a></li>
+      <li><a href="#">Sửa Tủ Lạnh</a></li>
+      <li><a href="#">Sửa Máy Giặt</a></li>
+      <li><a href="#">Sửa Tivi</a></li>
+      <li><a href="#">Điện Dân Dụng</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h5>Liên Hệ</h5>
+    <ul>
+      <li><a href="tel:0356299082">📞 0356 299 082</a></li>
+      <li><a href="#">📍 Thôn Ấp Tre, xã Quang Minh, TP.HN</a></li>
+      <li><a href="#">✉️ contact@dienlanpro.vn</a></li>
+      <li><a href="#">🕐 7:00 – 21:00 mỗi ngày</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  © 2024 ĐiệnTrườngPro. Tất cả quyền được bảo lưu.
+</div>
 
-    <footer>
-        <p>&copy; [2024] [Xuan Truong]. All rights reserved.</p>
-    </footer>
-
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
