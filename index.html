@@ -1,608 +1,157 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ĐiệnTrường Pro – Sửa Chữa Điện Lạnh & Điện Dân Dụng</title>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sửa Điện Lạnh Mê Linh | Sửa Tủ Lạnh, Máy Giặt, Tivi Tại Nhà</title>
 
-  :root {
-    --blue: #0a3cff;
-    --ice: #d4eeff;
-    --dark: #04112e;
-    --white: #f8fbff;
-    --orange: #ff6b1a;
-    --gray: #8fa3bf;
-    --card-bg: #0d2451;
-  }
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Sửa điện lạnh Mê Linh - Chuyên sửa tủ lạnh, máy giặt, tivi, điện dân dụng tại nhà. Có mặt nhanh 30 phút - Báo giá minh bạch - Bảo hành dài hạn. Gọi 0356 299 082">
+    <meta name="keywords" content="sửa điện lạnh Mê Linh, sửa tủ lạnh Mê Linh, sửa máy giặt Mê Linh, sửa tivi Mê Linh, sửa điện dân dụng Mê Linh">
+    <meta name="author" content="Điện Tử - Trường Huy">
 
-  html { scroll-behavior: smooth; }
+    <!-- Open Graph -->
+    <meta property="og:title" content="Sửa Điện Lạnh Mê Linh - Chuẩn CEO">
+    <meta property="og:description" content="Có mặt nhanh - Giá minh bạch - Bảo hành rõ ràng tại Mê Linh">
+    <meta property="og:type" content="website">
 
-  body {
-    font-family: 'Nunito', sans-serif;
-    background: var(--dark);
-    color: var(--white);
-    overflow-x: hidden;
-  }
+    <!-- Google Ads Global Site Tag (Thay AW-XXXX bằng mã thật khi chạy Ads) -->
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);} 
+      gtag('js', new Date());
+      gtag('config', 'AW-XXXXXXX');
+    </script>
+    -->
 
-  /* ───── NAV ───── */
-  nav {
-    position: fixed; top: 0; width: 100%; z-index: 100;
-    padding: 1rem 2rem;
-    display: flex; align-items: center; justify-content: space-between;
-    background: rgba(4,17,46,.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255,255,255,.07);
-  }
-  .nav-logo {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.6rem; font-weight: 900; letter-spacing: 1px;
-    color: var(--white);
-    text-decoration: none;
-  }
-  .nav-logo span { color: var(--orange); }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a { color: var(--gray); text-decoration: none; font-weight: 600; font-size: .95rem; transition: color .2s; }
-  .nav-links a:hover { color: var(--white); }
-  .nav-cta {
-    background: var(--orange); color: #fff; border: none;
-    padding: .6rem 1.4rem; border-radius: 30px;
-    font-family: 'Nunito', sans-serif; font-weight: 700; font-size: .95rem;
-    cursor: pointer; text-decoration: none; transition: transform .2s, box-shadow .2s;
-  }
-  .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,107,26,.4); }
-
-  /* ───── HERO ───── */
-  .hero {
-    min-height: 100vh;
-    display: flex; align-items: center;
-    padding: 7rem 6% 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 70% 70% at 80% 50%, rgba(10,60,255,.18) 0%, transparent 70%),
-                radial-gradient(ellipse 40% 50% at 20% 80%, rgba(255,107,26,.12) 0%, transparent 60%);
-  }
-  /* Grid dots background */
-  .hero::after {
-    content: '';
-    position: absolute; inset: 0;
-    background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
-    background-size: 36px 36px;
-  }
-  .hero-content { position: relative; z-index: 1; max-width: 600px; }
-  .hero-badge {
-    display: inline-block;
-    background: rgba(10,60,255,.2); border: 1px solid rgba(10,60,255,.5);
-    color: var(--ice); font-size: .82rem; font-weight: 700; letter-spacing: 2px;
-    text-transform: uppercase; padding: .4rem 1rem; border-radius: 20px;
-    margin-bottom: 1.4rem;
-    animation: fadeUp .8s ease both;
-  }
-  .hero h1 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(3rem, 7vw, 5.5rem);
-    font-weight: 900; line-height: 1.05;
-    text-transform: uppercase; letter-spacing: -1px;
-    animation: fadeUp .8s .15s ease both;
-  }
-  .hero h1 .accent { color: var(--orange); display: block; }
-  .hero p {
-    margin-top: 1.2rem; color: var(--gray);
-    font-size: 1.05rem; line-height: 1.7; max-width: 480px;
-    animation: fadeUp .8s .3s ease both;
-  }
-  .hero-actions {
-    margin-top: 2.2rem; display: flex; gap: 1rem; flex-wrap: wrap;
-    animation: fadeUp .8s .45s ease both;
-  }
-  .btn-primary {
-    background: var(--orange); color: #fff;
-    padding: .85rem 2rem; border-radius: 40px;
-    font-weight: 700; font-size: 1rem; text-decoration: none;
-    display: inline-flex; align-items: center; gap: .5rem;
-    transition: transform .2s, box-shadow .2s;
-  }
-  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255,107,26,.4); }
-  .btn-outline {
-    border: 2px solid rgba(255,255,255,.2); color: var(--white);
-    padding: .85rem 2rem; border-radius: 40px;
-    font-weight: 700; font-size: 1rem; text-decoration: none;
-    transition: border-color .2s, background .2s;
-  }
-  .btn-outline:hover { border-color: rgba(255,255,255,.6); background: rgba(255,255,255,.05); }
-
-  .hero-stats {
-    margin-top: 3rem; display: flex; gap: 2.5rem; flex-wrap: wrap;
-    animation: fadeUp .8s .6s ease both;
-  }
-  .stat-item { }
-  .stat-num {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 2.4rem; font-weight: 900; color: var(--white);
-    line-height: 1;
-  }
-  .stat-num span { color: var(--orange); }
-  .stat-label { font-size: .82rem; color: var(--gray); font-weight: 600; margin-top: .2rem; }
-
-  /* Floating image group */
-  .hero-visual {
-    position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
-    width: 40%; max-width: 500px;
-    animation: float 4s ease-in-out infinite;
-    z-index: 1;
-  }
-  @media(max-width:900px){ .hero-visual{ display:none; } }
-
-  .device-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
-  }
-  .device-card {
-    background: var(--card-bg);
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 16px; padding: 1.4rem;
-    display: flex; flex-direction: column; align-items: center; gap: .6rem;
-    transition: transform .3s;
-  }
-  .device-card:hover { transform: scale(1.04); }
-  .device-icon { font-size: 2.8rem; }
-  .device-name { font-size: .82rem; font-weight: 700; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; }
-  .device-card.featured {
-    background: linear-gradient(135deg, #0a3cff22, #0a3cff44);
-    border-color: rgba(10,60,255,.4);
-  }
-
-  /* ───── SERVICES ───── */
-  section { padding: 5rem 6%; }
-  .section-label {
-    font-size: .78rem; font-weight: 700; letter-spacing: 3px;
-    text-transform: uppercase; color: var(--orange); margin-bottom: .8rem;
-  }
-  .section-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
-    line-height: 1.1; text-transform: uppercase;
-  }
-  .section-title span { color: var(--blue); }
-
-  .services-grid {
-    margin-top: 3rem;
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.5rem;
-  }
-  .service-card {
-    background: var(--card-bg);
-    border: 1px solid rgba(255,255,255,.07);
-    border-radius: 20px; padding: 2rem;
-    position: relative; overflow: hidden;
-    transition: transform .3s, box-shadow .3s;
-    cursor: default;
-  }
-  .service-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: var(--orange);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform .3s;
-  }
-  .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,.4); }
-  .service-card:hover::before { transform: scaleX(1); }
-  .service-ico { font-size: 2.4rem; margin-bottom: 1rem; }
-  .service-card h3 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.35rem; font-weight: 700; text-transform: uppercase;
-    margin-bottom: .6rem;
-  }
-  .service-card p { color: var(--gray); font-size: .9rem; line-height: 1.6; }
-  .service-tag {
-    display: inline-block; margin-top: 1rem;
-    background: rgba(10,60,255,.2); color: var(--ice);
-    font-size: .72rem; font-weight: 700; padding: .25rem .7rem;
-    border-radius: 12px; letter-spacing: 1px; text-transform: uppercase;
-  }
-
-  /* ───── WHY US ───── */
-  .why-us { background: linear-gradient(180deg, transparent, rgba(10,60,255,.06), transparent); }
-  .why-grid {
-    margin-top: 3rem;
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-  }
-  .why-item { text-align: center; }
-  .why-num {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 3.5rem; font-weight: 900;
-    color: transparent;
-    -webkit-text-stroke: 2px var(--orange);
-    line-height: 1;
-  }
-  .why-item h4 { font-size: 1rem; font-weight: 700; margin: .6rem 0 .4rem; }
-  .why-item p { color: var(--gray); font-size: .88rem; line-height: 1.5; }
-
-  /* ───── PROCESS ───── */
-  .process-steps {
-    margin-top: 3rem;
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-    gap: 0;
-    position: relative;
-  }
-  .process-steps::before {
-    content: '';
-    position: absolute; top: 32px; left: 10%; right: 10%; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--blue), transparent);
-  }
-  .step {
-    display: flex; flex-direction: column; align-items: center;
-    text-align: center; padding: 0 1rem;
-    position: relative; z-index: 1;
-  }
-  .step-num {
-    width: 64px; height: 64px;
-    background: var(--dark); border: 2px solid var(--blue);
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-family: 'Barlow Condensed', sans-serif; font-size: 1.6rem; font-weight: 900;
-    color: var(--blue); margin-bottom: 1.2rem;
-  }
-  .step h4 { font-weight: 700; margin-bottom: .4rem; }
-  .step p { color: var(--gray); font-size: .85rem; line-height: 1.5; }
-
-  /* ───── TESTIMONIALS ───── */
-  .testimonials-grid {
-    margin-top: 3rem;
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(270px,1fr));
-    gap: 1.5rem;
-  }
-  .tcard {
-    background: var(--card-bg);
-    border: 1px solid rgba(255,255,255,.07);
-    border-radius: 20px; padding: 1.8rem;
-  }
-  .tcard-stars { color: #fbbf24; font-size: 1rem; margin-bottom: 1rem; }
-  .tcard p { color: var(--gray); font-size: .92rem; line-height: 1.65; font-style: italic; }
-  .tcard-author { display: flex; align-items: center; gap: .8rem; margin-top: 1.2rem; }
-  .tcard-avatar {
-    width: 42px; height: 42px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--blue), var(--orange));
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700; font-size: 1rem;
-  }
-  .tcard-name { font-weight: 700; font-size: .92rem; }
-  .tcard-loc { font-size: .78rem; color: var(--gray); }
-
-  /* ───── CTA BANNER ───── */
-  .cta-banner {
-    background: linear-gradient(135deg, var(--blue) 0%, #0a2aaa 100%);
-    border-radius: 28px; margin: 0 6%;
-    padding: 4rem 8%; text-align: center;
-    position: relative; overflow: hidden;
-  }
-  .cta-banner::before {
-    content: '☎';
-    position: absolute; right: -2rem; top: -2rem;
-    font-size: 12rem; opacity: .06; line-height: 1;
-  }
-  .cta-banner h2 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900;
-    text-transform: uppercase; margin-bottom: .8rem;
-  }
-  .cta-banner p { color: rgba(255,255,255,.75); max-width: 500px; margin: 0 auto 2rem; line-height: 1.6; }
-  .cta-phone {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 900;
-    color: var(--orange); display: block; margin-bottom: 1.5rem;
-    text-decoration: none; letter-spacing: 2px;
-    transition: opacity .2s;
-  }
-  .cta-phone:hover { opacity: .8; }
-
-  /* ───── FOOTER ───── */
-  footer {
-    padding: 3rem 6% 2rem;
-    border-top: 1px solid rgba(255,255,255,.07);
-    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem;
-  }
-  .footer-brand .nav-logo { font-size: 1.8rem; }
-  .footer-brand p { color: var(--gray); font-size: .88rem; max-width: 240px; margin-top: .6rem; line-height: 1.6; }
-  .footer-col h5 { font-weight: 700; margin-bottom: 1rem; font-size: .95rem; }
-  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
-  .footer-col ul li a { color: var(--gray); text-decoration: none; font-size: .88rem; transition: color .2s; }
-  .footer-col ul li a:hover { color: var(--white); }
-  .footer-bottom {
-    text-align: center; padding: 1.5rem 6%;
-    color: var(--gray); font-size: .8rem;
-    border-top: 1px solid rgba(255,255,255,.05);
-  }
-
-  /* ───── KEYFRAMES ───── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(28px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(-50%); }
-    50% { transform: translateY(calc(-50% - 14px)); }
-  }
-
-  /* Scroll reveal */
-  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s, transform .7s; }
-  .reveal.visible { opacity: 1; transform: none; }
-
-  /* ───── RESPONSIVE ───── */
-  @media(max-width:600px){
-    nav { padding: .8rem 1.2rem; }
-    .nav-links { display: none; }
-    .hero { padding: 6rem 5% 3rem; }
-    .process-steps::before { display: none; }
-    section { padding: 4rem 5%; }
-    .cta-banner { margin: 0 4%; padding: 3rem 6%; }
-  }
-</style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800 relative">
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">Điện<span>Trường</span>Pro</a>
-  <ul class="nav-links">
-    <li><a href="#dich-vu">Dịch Vụ</a></li>
-    <li><a href="#quy-trinh">Quy Trình</a></li>
-    <li><a href="#danh-gia">Đánh Giá</a></li>
-    <li><a href="#lien-he">Liên Hệ</a></li>
-  </ul>
-  <a href="tel:0356299082" class="nav-cta">📞 Gọi Ngay</a>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">⚡ Dịch Vụ Uy Tín – Bảo Hành 12 Tháng</div>
-    <h1>
-      Sửa Chữa
-      <span class="accent">Điện Lạnh</span>
-      Chuyên Nghiệp
-    </h1>
-    <p>Đội ngũ kỹ thuật viên lành nghề, sửa chữa tại nhà nhanh chóng – đúng giờ. Tủ lạnh, máy lạnh, máy giặt, tivi và các thiết bị điện dân dụng.</p>
-    <div class="hero-actions">
-      <a href="tel:0356299082" class="btn-primary">📞 Gọi Ngay: 0356 299 082</a>
-      <a href="#dich-vu" class="btn-outline">Xem Dịch Vụ →</a>
-    </div>
-    <div class="hero-stats">
-      <div class="stat-item">
-        <div class="stat-num">5000<span>+</span></div>
-        <div class="stat-label">Khách Hàng Hài Lòng</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">10<span>+</span></div>
-        <div class="stat-label">Năm Kinh Nghiệm</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">60<span>ph</span></div>
-        <div class="stat-label">Có Mặt Trong</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Device visual -->
-  <div class="hero-visual">
-    <div class="device-grid">
-      <div class="device-card featured">
-        <div class="device-icon">❄️</div>
-        <div class="device-name">Điều Hòa</div>
-      </div>
-      <div class="device-card">
-        <div class="device-icon">🧊</div>
-        <div class="device-name">Tủ Lạnh</div>
-      </div>
-      <div class="device-card">
-        <div class="device-icon">📺</div>
-        <div class="device-name">Tivi</div>
-      </div>
-      <div class="device-card featured">
-        <div class="device-icon">🫧</div>
-        <div class="device-name">Máy Giặt</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section id="dich-vu">
-  <div class="section-label">Dịch Vụ Của Chúng Tôi</div>
-  <div class="section-title">Sửa Mọi Thiết Bị,<br><span>Giải Quyết Mọi Sự Cố</span></div>
-  <div class="services-grid">
-    <div class="service-card reveal">
-      <div class="service-ico">❄️</div>
-      <h3>Điều Hòa – Máy Lạnh</h3>
-      <p>Sửa chữa, vệ sinh, nạp gas, lắp đặt tất cả hãng: Daikin, Panasonic, LG, Samsung, Midea, Toshiba…</p>
-      <span class="service-tag">Phổ biến nhất</span>
-    </div>
-    <div class="service-card reveal">
-      <div class="service-ico">🧊</div>
-      <h3>Tủ Lạnh</h3>
-      <p>Không làm lạnh, đông không đều, chảy nước, ồn ào? Chúng tôi xử lý nhanh tại nhà bạn trong ngày.</p>
-      <span class="service-tag">Có mặt trong 60ph</span>
-    </div>
-    <div class="service-card reveal">
-      <div class="service-ico">📺</div>
-      <h3>Tivi – Smart TV</h3>
-      <p>Màn hình hỏng, không lên hình, mất tiếng, lỗi main, hỏng nguồn – sửa chữa tất cả các thương hiệu.</p>
-      <span class="service-tag">LCD / OLED / QLED</span>
-    </div>
-    <div class="service-card reveal">
-      <div class="service-ico">🫧</div>
-      <h3>Máy Giặt</h3>
-      <p>Máy không giặt, không vắt, báo lỗi, rung lắc, rò nước – sửa cửa ngang, cửa trên mọi hãng.</p>
-      <span class="service-tag">Lồng ngang / dọc</span>
-    </div>
-    <div class="service-card reveal">
-      <div class="service-ico">🔌</div>
-      <h3>Điện Dân Dụng</h3>
-      <p>Sửa chữa điện trong nhà, thay bóng đèn, ổ cắm, CB, đi dây điện, lắp quạt trần, bình nóng lạnh…</p>
-      <span class="service-tag">Trọn gói</span>
-    </div>
-    <div class="service-card reveal">
-      <div class="service-ico">🛠️</div>
-      <h3>Bảo Trì Định Kỳ</h3>
-      <p>Gói bảo trì hàng năm giúp thiết bị hoạt động bền bỉ, tiết kiệm điện và phòng ngừa hư hỏng lớn.</p>
-      <span class="service-tag">Tiết kiệm điện</span>
-    </div>
-  </div>
-</section>
-
-<!-- WHY US -->
-<section class="why-us">
-  <div class="section-label">Tại Sao Chọn Chúng Tôi</div>
-  <div class="section-title">Cam Kết Chất Lượng,<br><span>Không Lo Rủi Ro</span></div>
-  <div class="why-grid">
-    <div class="why-item reveal">
-      <div class="why-num">01</div>
-      <h4>Thợ Được Chứng Nhận</h4>
-      <p>Kỹ thuật viên được đào tạo bài bản, có chứng chỉ điện lạnh chuyên nghiệp.</p>
-    </div>
-    <div class="why-item reveal">
-      <div class="why-num">02</div>
-      <h4>Báo Giá Rõ Ràng</h4>
-      <p>Báo giá miễn phí trước khi sửa, không phát sinh thêm chi phí sau khi xác nhận.</p>
-    </div>
-    <div class="why-item reveal">
-      <div class="why-num">03</div>
-      <h4>Bảo Hành 12 Tháng</h4>
-      <p>Cam kết bảo hành dài hạn cho cả linh kiện lẫn công sửa chữa.</p>
-    </div>
-    <div class="why-item reveal">
-      <div class="why-num">04</div>
-      <h4>Phục Vụ 7/7</h4>
-      <p>Hoạt động cả ngày lễ, Tết. Hỗ trợ khẩn cấp 24/7 cho các trường hợp cấp bách.</p>
-    </div>
-  </div>
-</section>
-
-<!-- PROCESS -->
-<section id="quy-trinh">
-  <div class="section-label">Quy Trình Làm Việc</div>
-  <div class="section-title">Chỉ <span>4 Bước</span> Đơn Giản</div>
-  <div class="process-steps">
-    <div class="step reveal">
-      <div class="step-num">1</div>
-      <h4>Liên Hệ</h4>
-      <p>Gọi điện hoặc nhắn tin, mô tả sự cố thiết bị để được tư vấn ngay.</p>
-    </div>
-    <div class="step reveal">
-      <div class="step-num">2</div>
-      <h4>Đặt Lịch</h4>
-      <p>Chọn khung giờ phù hợp, thợ đến đúng giờ, cam kết đúng lịch hẹn.</p>
-    </div>
-    <div class="step reveal">
-      <div class="step-num">3</div>
-      <h4>Kiểm Tra & Báo Giá</h4>
-      <p>Chẩn đoán kỹ lưỡng, báo giá minh bạch trước khi tiến hành sửa chữa.</p>
-    </div>
-    <div class="step reveal">
-      <div class="step-num">4</div>
-      <h4>Sửa Chữa & Bàn Giao</h4>
-      <p>Hoàn thành sửa chữa, test kỹ lưỡng, bàn giao và cấp phiếu bảo hành.</p>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section id="danh-gia">
-  <div class="section-label">Đánh Giá Khách Hàng</div>
-  <div class="section-title">Khách Hàng <span>Nói Gì</span> Về Chúng Tôi</div>
-  <div class="testimonials-grid">
-    <div class="tcard reveal">
-      <div class="tcard-stars">★★★★★</div>
-      <p>"Máy lạnh nhà tôi bị hỏng quạt dàn lạnh, gọi buổi sáng là buổi chiều thợ đến ngay. Sửa nhanh, giá hợp lý, rất chuyên nghiệp!"</p>
-      <div class="tcard-author">
-        <div class="tcard-avatar">T</div>
-        <div>
-          <div class="tcard-name">Chị Thanh Hương</div>
-          <div class="tcard-loc">Quận Cầu Giấy, Hà Nội</div>
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 py-6 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-blue-600">ĐIỆN TỬ - TRƯỜNG HUY</h1>
+            <a href="tel:0356299082" class="bg-blue-600 text-white px-5 py-2 rounded-xl hover:bg-blue-700 transition">📞 0356 299 082</a>
         </div>
-      </div>
-    </div>
-    <div class="tcard reveal">
-      <div class="tcard-stars">★★★★★</div>
-      <p>"Tủ lạnh mất lạnh đột ngột, lo lắng lắm. Thợ đến kiểm tra, phát hiện bị tắc gas và đã khắc phục trong 2 tiếng. Uy tín 100%!"</p>
-      <div class="tcard-author">
-        <div class="tcard-avatar">M</div>
-        <div>
-          <div class="tcard-name">Anh Minh Tuấn</div>
-          <div class="tcard-loc">Quận Bình Thạnh, TP.HCM</div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-blue-50 py-20">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-6 text-gray-900">Sửa Điện Lạnh Tại Nhà Khu Vực Mê Linh</h2>
+            <p class="text-lg text-gray-600 mb-8">
+                Chuyên sửa tủ lạnh, máy giặt, tivi, điện dân dụng tại Mê Linh.<br>
+                Có mặt nhanh 30 phút - Làm việc chuyên nghiệp - Uy tín.
+            </p>
+            <a href="tel:0356299082" class="bg-blue-600 text-white px-8 py-3 rounded-2xl text-lg hover:bg-blue-700 transition">Gọi sửa ngay</a>
         </div>
-      </div>
-    </div>
-    <div class="tcard reveal">
-      <div class="tcard-stars">★★★★★</div>
-      <p>"Tivi màn hình bị sọc, cứ tưởng phải mua cái mới. Thợ sửa xong chỉ mất 400k, giờ xem như mới. Cảm ơn rất nhiều!"</p>
-      <div class="tcard-author">
-        <div class="tcard-avatar">L</div>
-        <div>
-          <div class="tcard-name">Chị Lan Anh</div>
-          <div class="tcard-loc">Quận Hải Châu, Đà Nẵng</div>
+    </section>
+
+    <!-- Services -->
+    <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <h3 class="text-3xl font-bold text-center mb-12">DỊCH VỤ SỬA CHỮA TẠI MÊ LINH</h3>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="bg-gray-50 p-6 rounded-2xl shadow">
+                    <h4 class="text-xl font-semibold mb-4 text-blue-600">Sửa Tủ Lạnh Mê Linh</h4>
+                    <p>Sửa tủ lạnh không lạnh, kém lạnh, chảy nước, xì gas, thay block inverter.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-2xl shadow">
+                    <h4 class="text-xl font-semibold mb-4 text-blue-600">Sửa Máy Giặt Mê Linh</h4>
+                    <p>Máy giặt không vắt, báo lỗi, không xả nước, hỏng board điều khiển.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-2xl shadow">
+                    <h4 class="text-xl font-semibold mb-4 text-blue-600">Sửa Tivi Mê Linh</h4>
+                    <p>Tivi mất nguồn, sọc màn hình, thay đèn LED, sửa mainboard.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-2xl shadow">
+                    <h4 class="text-xl font-semibold mb-4 text-blue-600">Sửa Điện Dân Dụng</h4>
+                    <p>Sửa chập điện, nhảy aptomat, lắp ổ cắm, CB, đi dây mới an toàn.</p>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- CTA BANNER -->
-<div id="lien-he">
-  <div class="cta-banner reveal">
-    <h2>Thiết Bị Hỏng?<br>Gọi Ngay – Có Mặt Trong 60 Phút!</h2>
-    <p>Phục vụ tận nhà, báo giá miễn phí, bảo hành 12 tháng. Đừng để sự cố kéo dài!</p>
-    <a href="tel:0356299082" class="cta-phone">📞 0356 299 082</a>
-    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-      <a href="tel:0356299082" class="btn-primary">Gọi Điện Ngay</a>
-      <a href="https://zalo.me/0356299082" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,.3)">Nhắn Zalo</a>
-    </div>
-  </div>
-</div>
+    <!-- Reviews -->
+    <section class="bg-blue-50 py-16">
+        <div class="max-w-6xl mx-auto px-6">
+            <h3 class="text-3xl font-bold text-center mb-12">KHÁCH HÀNG ĐÁNH GIÁ 5⭐</h3>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-2xl shadow">
+                    <p class="mb-4">"Sửa nhanh, đúng bệnh, giá hợp lý. Gọi 30 phút là có mặt."</p>
+                    <strong>- Anh Nam, Mê Linh ⭐⭐⭐⭐⭐</strong>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow">
+                    <p class="mb-4">"Thợ làm việc chuyên nghiệp, tư vấn rõ ràng, có bảo hành."</p>
+                    <strong>- Chị Hương, Tiền Phong ⭐⭐⭐⭐⭐</strong>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow">
+                    <p class="mb-4">"Máy giặt hỏng nặng nhưng sửa xong chạy êm như mới."</p>
+                    <strong>- Anh Tuấn, Quang Minh ⭐⭐⭐⭐⭐</strong>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-brand">
-    <a href="#" class="nav-logo">Điện<span style="color:var(--orange)">Trường</span>Pro</a>
-    <p>Dịch vụ sửa chữa điện lạnh – điện dân dụng uy tín, nhanh chóng, bảo hành dài hạn.</p>
-  </div>
-  <div class="footer-col">
-    <h5>Dịch Vụ</h5>
-    <ul>
-      <li><a href="#">Sửa Điều Hòa</a></li>
-      <li><a href="#">Sửa Tủ Lạnh</a></li>
-      <li><a href="#">Sửa Máy Giặt</a></li>
-      <li><a href="#">Sửa Tivi</a></li>
-      <li><a href="#">Điện Dân Dụng</a></li>
-    </ul>
-  </div>
-  <div class="footer-col">
-    <h5>Liên Hệ</h5>
-    <ul>
-      <li><a href="tel:0356299082">📞 0356 299 082</a></li>
-      <li><a href="#">📍 Thôn Ấp Tre, xã Quang Minh, TP.HN</a></li>
-      <li><a href="#">✉️ contact@dienlanpro.vn</a></li>
-      <li><a href="#">🕐 7:00 – 21:00 mỗi ngày</a></li>
-    </ul>
-  </div>
-</footer>
-<div class="footer-bottom">
-  © 2024 ĐiệnTrườngPro. Tất cả quyền được bảo lưu.
-</div>
+    <!-- SEO Content Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <h3 class="text-3xl font-bold mb-6">Dịch Vụ Sửa Điện Lạnh Uy Tín Tại Mê Linh</h3>
+            <p class="mb-4">
+                Nếu bạn đang tìm thợ sửa điện lạnh Mê Linh uy tín, giá tốt và có mặt nhanh,
+                Sửa Chuẩn CEO - Trường Huy là lựa chọn phù hợp. Chúng tôi chuyên sửa tủ lạnh,
+                sửa máy giặt, sửa tivi và xử lý sự cố điện dân dụng tận nhà.
+            </p>
+            <p class="mb-4">
+                Với nhiều năm kinh nghiệm trong lĩnh vực điện lạnh - điện tử,
+                chúng tôi cam kết bắt đúng bệnh, sửa đúng lỗi, không thay linh kiện không cần thiết.
+                Báo giá trước khi làm và có phiếu bảo hành rõ ràng.
+            </p>
+            <p>
+                Phục vụ tất cả các xã thuộc khu vực Mê Linh như: Tiền Phong, Quang Minh,
+                Đại Thịnh, Thanh Lâm và các khu vực lân cận.
+            </p>
+        </div>
+    </section>
 
-<script>
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); }
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
+    <!-- Contact Form -->
+    <section class="py-16 bg-gray-100">
+        <div class="max-w-4xl mx-auto px-6">
+            <h3 class="text-3xl font-bold text-center mb-10">GỬI YÊU CẦU SỬA CHỮA</h3>
+            <form action="https://formsubmit.co/truongtx91@gmail.com" method="POST" class="grid gap-6 bg-white p-8 rounded-2xl shadow">
+                <input type="text" name="name" placeholder="Họ và tên" required class="p-4 border rounded-xl">
+                <input type="tel" name="phone" placeholder="Số điện thoại" required class="p-4 border rounded-xl">
+                <input type="text" name="address" placeholder="Địa chỉ tại Mê Linh" required class="p-4 border rounded-xl">
+                <textarea name="message" rows="4" placeholder="Mô tả tình trạng thiết bị" class="p-4 border rounded-xl"></textarea>
+                <input type="hidden" name="_captcha" value="false">
+                <button type="submit" class="bg-blue-600 text-white py-4 rounded-2xl text-lg hover:bg-blue-700 transition">Gửi yêu cầu</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Google Maps Mê Linh -->
+    <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <h3 class="text-3xl font-bold mb-10">KHU VỰC PHỤC VỤ - MÊ LINH</h3>
+            <div class="rounded-2xl overflow-hidden shadow-lg">
+                <iframe src="https://www.google.com/maps?q=Mê%20Linh&output=embed" width="100%" height="400" style="border:0;" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zalo Floating Button -->
+    <a href="https://zalo.me/0356299082" target="_blank" 
+       class="fixed bottom-6 right-6 bg-blue-600 text-white px-5 py-3 rounded-full shadow-lg hover:bg-blue-700 transition z-50">
+        Chat Zalo
+    </a>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 py-6 text-center text-gray-600">
+        © 2026 Điện Tử - Trường Huy | Điện lạnh - Điện dân dụng tại Mê Linh
+    </footer>
+
 </body>
 </html>
