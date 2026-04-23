@@ -82,7 +82,7 @@
 
     .nav-logo {
       font-family:'Syne', sans-serif;
-      font-weight:800; font-size:20px;
+      font-weight:800; font-size:28px;
       color:var(--bg); text-decoration:none;
       letter-spacing:0.02em;
     }
@@ -154,6 +154,15 @@
       from { opacity:0; stroke-dashoffset:600; }
       to   { opacity:0.25; stroke-dashoffset:0; }
     }
+    /* two-column hero layout */
+    .hero-inner {
+      position:relative; z-index:10;
+      max-width:1200px; width:100%; margin:0 auto;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:64px;
+      align-items:center;
+    }
 
     .hero-content {
       position:relative; z-index:10;
@@ -180,15 +189,8 @@
       animation:fadeUp .8s .1s ease both;
     }
 
-    .hero-title .t1 { display:block; color:var(--text); }
-    .hero-title .t2 {
-      display:block;
-      font-family:'Lora', serif; font-style:italic; font-weight:400;
-      color:transparent;
-      -webkit-text-stroke:1px rgba(255,255,255,0.2);
-      font-size:0.9em;
-    }
-    .hero-title .t3 { display:block; color:var(--cyan); }
+    .hero-title .t1 .t2 .t3 { display:block; color:var(--text); }
+
 
     .hero-sub {
       font-size:16px; line-height:1.8; color:var(--bg);
@@ -222,6 +224,23 @@
     }
 
     .btn-outline:hover { border-color:var(--cyan); color:var(--cyan); }
+
+        /* hero stats strip */
+        .hero-stats {
+      display:flex; gap:32px; margin-top:40px;
+      padding-top:32px;
+      border-top:1px solid var(--border);
+      animation:fadeUp .8s .45s ease both;
+    }
+
+    .hero-stat-num {
+      font-family:'Syne', sans-serif; font-weight:800;
+      font-size:28px; color:var(--text); line-height:1;
+    }
+
+    .hero-stat-num span { color:var(--bg); }
+    .hero-stat-lbl { font-size:10px; letter-spacing:.15em; text-transform:uppercase; color:var(--bg); margin-top:4px; }
+
 
     .hero-scroll {
       position:absolute; bottom:40px; left:50%; transform:translateX(-50%);
@@ -597,10 +616,8 @@
     .contact-info-title {
       font-family:'Lora', serif; font-style:italic; font-weight:400;
       font-size:clamp(24px, 2.5vw, 38px);
-      line-height:1.35; margin-bottom:24px; color:var(--text);
+      line-height:1.35; margin-bottom:24px;color:var(--muted);
     }
-
-    .contact-info-title em { color:var(--muted); font-style:normal; }
 
     .contact-info-sub {
       font-size:16px; line-height:1.8; color:var(--muted); margin-bottom:40px;
@@ -641,13 +658,14 @@
     /* FORM */
     .contact-form-wrap {
       background:rgba(255,255,255,0.025);
-      border:1px solid var(--border);
+      border:1px solid var(--muted);
       padding:48px 44px;
     }
 
     .form-title {
       font-family:'Open Sans', sans-serif; font-weight:700; font-size:18px;
       margin-bottom:8px;
+      color:var(--muted);
     }
 
     .form-sub { font-size:16px; color:var(--muted); margin-bottom:36px; }
@@ -679,14 +697,14 @@
       padding-right:40px; cursor:pointer;
     }
 
-    .form-group select option { background:var(--bg2); color:var(--text); }
+    .form-group select option { background:var(--bg2); color:var(--muted); }
 
     .form-group textarea { resize:vertical; min-height:120px; }
 
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
-      border-color:var(--cyan);
+      border-color:var(--muted);
       box-shadow:0 0 0 2px rgba(0,212,232,0.08);
     }
 
@@ -697,10 +715,10 @@
 
     .form-check input[type="checkbox"] {
       width:16px; height:16px; margin-top:2px; flex-shrink:0;
-      accent-color:var(--cyan); cursor:pointer;
+      accent-color:var(--muted); cursor:pointer;
     }
 
-    .form-check label { font-size:12px; color:var(--muted); cursor:pointer; }
+    .form-check label { font-size:16px; color:var(--muted); cursor:pointer; }
 
     .form-submit {
       width:100%; background:var(--cyan); color:var(--bg);
@@ -844,21 +862,50 @@
     </svg>
   </div>
 
-  <div class="hero-content">
-    <div class="hero-eyebrow"><span></span>End-to-End Engineering<span></span></div>
-    <p class="hero-sub">
-      Designing innovative embedded systems and custom electronics solutions — from PCB to production, firmware to mobile app.
-    </p>
-    <div class="hero-btns">
-      <a href="#services" class="btn-primary">Our Services</a>
-      <a href="#projects" class="btn-outline">View Projects</a>
+  <div class="hero-inner">
+
+    <!-- LEFT: text -->
+    <div class="hero-content">
+      <div class="hero-eyebrow"><span></span>Build Your Idea<span></span></div>
+      <h1 class="hero-title">
+        Developing Technology
+      </h1>
+      <p class="hero-sub">
+        Designing innovative embedded systems and custom electronics solutions — from PCB to production, firmware to mobile app.
+      </p>
+      <div class="hero-btns">
+        <a href="#services" class="btn-primary">Our Services</a>
+        <a href="#projects" class="btn-outline">View Projects</a>
+      </div>
+
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">120<span>+</span></div>
+          <div class="hero-stat-lbl">Projects Shipped</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">10<span>yr</span></div>
+          <div class="hero-stat-lbl">Experience</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">98<span>%</span></div>
+          <div class="hero-stat-lbl">Satisfaction</div>
+        </div>
+      </div>
     </div>
+
+    <!-- RIGHT: image -->
+    <div class="hero-image-panel">
+      <div class="hero-img-frame">
+        <img src="assets/Hero_PCB_circuit_board_35613d51-G8uqV79e.png" alt="PCB Circuit Board">
+        <div class="img-overlay"></div>
+      </div>
+      <div class="hero-img-badge">PCB Design · Embedded Systems · IoT</div>
+    </div>
+
   </div>
 
   <div class="hero-scroll">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
-  </div>
 </section>
 
 <!-- ═══ SERVICES ═══ -->
@@ -1298,16 +1345,16 @@
 
       <!-- Left: info -->
       <div class="anim">
-        <p class="contact-info-title">Open for collaboration on <em>innovative</em> hardware and firmware projects.</p>
+        <p class="contact-info-title">Open for collaboration on innovative hardware and firmware projects.</p>
         <p class="contact-info-sub">Whether you have a full spec or just an idea — reach out and let's figure out if we're a fit. We typically respond within 24 hours.</p>
 
-        <a href="mailto:contact@thtech247.com" class="contact-detail">
+        <a href="mailto:truongtx91@gmail.com" class="contact-detail">
           <div class="contact-detail-icon">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           </div>
           <div class="contact-detail-text">
             <div class="label">Email</div>
-            <div class="val">contact@thtech247.com</div>
+            <div class="val">truongtx91@gmail.com</div>
           </div>
         </a>
 
