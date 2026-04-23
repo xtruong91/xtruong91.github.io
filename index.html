@@ -1,289 +1,1512 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sửa Điện Lạnh, Tủ Lạnh, Máy Giặt, Tivi Tại Nhà</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THTech — Hardware & Software Solutions</title>
+  <meta name="description" content="THTech delivers end-to-end engineering: PCB design, mechanical engineering, embedded firmware, and mobile app development.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════
+       TOKENS
+    ═══════════════════════════════════════ */
+    :root {
+      --bg:        #F9FAFB;
+      --bg2:       #F9FAFB;
+      --bg3:       #F9FAFB;
+      --surface:   rgba(255,255,255,0.03);
+      --border:    rgba(255,255,255,0.07);
+      --border2:   rgba(255,255,255,0.12);
+      --text:      #dde3f0;
+      --muted:     #0D1117;
+      --dim:       #3a4260;
+      --cyan:      #1E1E1E;
+      --cyan2:     #0D1117;
+      --orange:    #f07040;
+      --green:     #22c990;
+      --purple:    #8b5cf6;
+      --glow-c:    rgba(0,212,232,0.12);
+    }
 
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Sửa điện lạnh Mê Linh - Chuyên sửa tủ lạnh, máy giặt, tivi, điện dân dụng tại nhà. Có mặt nhanh 30 phút - Báo giá minh bạch - Bảo hành dài hạn. Gọi 0356 299 082">
-    <meta name="keywords" content="sửa điện lạnh Mê Linh, sửa tủ lạnh toàn quốc, sửa máy giặt Mê Linh, sửa tivi Mê Linh, sửa điện dân dụng toàn quốc">
-    <meta name="author" content="Điện Tử Xuân Trường">
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="Sửa Điện Tử Điện Lạnh Xuân Trường">
-    <meta property="og:description" content="Có mặt nhanh - Giá minh bạch - Bảo hành rõ ràng toàn quốc">
-    <meta property="og:type" content="website">
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-    <!-- Google Ads Global Site Tag (Thay AW-XXXX bằng mã thật khi chạy Ads) -->
-    <!--
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);} 
-      gtag('js', new Date());
-      gtag('config', 'AW-XXXXXXX');
-    </script>
-    -->
+    /* noise */
+    body::after {
+      content:'';
+      position:fixed; inset:0; z-index:9999; pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
+      opacity:.5;
+    }
 
-	<style>
-	.tick-list {
-	  list-style: none;
-	  padding-left: 0;
-	}
-	.tick-list li {
-	  position: relative;
-	  padding-left: 25px;
-	  margin-bottom: 8px;
-	}
-	.tick-list li::before {
-	  content: "✔";
-	  position: absolute;
-	  left: 0;
-	  color: #28a745;
-	  font-weight: bold;
-	}
-	</style>
+    /* dot-grid */
+    body::before {
+      content:'';
+      position:fixed; inset:0; pointer-events:none;
+      background-image: radial-gradient(circle, rgba(0,212,232,0.06) 1px, transparent 1px);
+      background-size: 32px 32px;
+      z-index:0;
+    }
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    ::-webkit-scrollbar { width:3px; }
+    ::-webkit-scrollbar-track { background:var(--bg); }
+    ::-webkit-scrollbar-thumb { background:var(--cyan2); }
+
+    /* ═══════════════════════════════════════
+       NAV
+    ═══════════════════════════════════════ */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:200;
+      background:rgba(6,9,15,0.85);
+      backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width:1200px; margin:0 auto;
+      padding:0 32px;
+      height:60px;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+
+    .nav-logo {
+      font-family:'Syne', sans-serif;
+      font-weight:800; font-size:20px;
+      color:var(--bg); text-decoration:none;
+      letter-spacing:0.02em;
+    }
+
+    .nav-links {
+      display:flex; gap:36px; list-style:none;
+    }
+
+    .nav-links a {
+      color:var(--bg); text-decoration:none;
+      font-size:14px; letter-spacing:0.18em; text-transform:uppercase;
+      transition:color .2s;
+    }
+
+    .nav-links a:hover { color:var(--cyan); }
+
+    .nav-cta {
+      background:transparent;
+      border:1px solid var(--cyan);
+      color:var(--bg);
+      font-family:'Inter', sans-serif;
+      font-size:11px; letter-spacing:0.15em; text-transform:uppercase;
+      padding:9px 22px; cursor:pointer;
+      transition:all .2s; text-decoration:none;
+    }
+
+    .nav-cta:hover { background:var(--cyan); color:var(--bg); }
+
+    .nav-mobile-btn {
+      display:none;
+      background:none; border:none; color:var(--text); cursor:pointer; padding:4px;
+    }
+
+    /* ═══════════════════════════════════════
+       HERO (original enhanced)
+    ═══════════════════════════════════════ */
+    #hero {
+      position:relative; min-height:100vh;
+      display:flex; align-items:center; justify-content:center;
+      overflow:hidden;
+    }
+
+    .hero-bg {
+      position:absolute; inset:0;
+      background: linear-gradient(135deg, #0a1428 0%, #050810 50%, #0d1a10 100%);
+    }
+
+    .hero-bg-overlay {
+      position:absolute; inset:0;
+      background:
+        radial-gradient(ellipse 60% 60% at 70% 50%, rgba(0,212,232,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(240,112,64,0.05) 0%, transparent 50%);
+    }
+
+    /* animated PCB traces */
+    .pcb-lines {
+      position:absolute; inset:0; pointer-events:none; overflow:hidden;
+    }
+
+    .pcb-lines svg { width:100%; height:100%; }
+
+    .trace { stroke:var(--cyan); stroke-width:0.5; fill:none; opacity:0; }
+    .trace-1 { animation: traceOn 3s 0.5s ease both; }
+    .trace-2 { animation: traceOn 3s 1.2s ease both; }
+    .trace-3 { animation: traceOn 3s 1.8s ease both; }
+    .trace-4 { animation: traceOn 3s 0.9s ease both; }
+
+    @keyframes traceOn {
+      from { opacity:0; stroke-dashoffset:600; }
+      to   { opacity:0.25; stroke-dashoffset:0; }
+    }
+
+    .hero-content {
+      position:relative; z-index:10;
+      max-width:900px; padding:0 32px;
+      text-align:center;
+    }
+
+    .hero-eyebrow {
+      font-size:10px; letter-spacing:0.3em; text-transform:uppercase;
+      color:var(--bg); margin-bottom:28px;
+      display:inline-flex; align-items:center; gap:12px;
+      animation:fadeUp .8s ease both;
+    }
+
+    .hero-eyebrow span { width:32px; height:1px; background:var(--cyan); display:inline-block; }
+
+    h1.hero-title {
+      font-family:'Syne', sans-serif;
+      font-weight:800;
+      font-size:clamp(44px, 7vw, 96px);
+      line-height:0.95;
+      letter-spacing:-0.03em;
+      margin-bottom:32px;
+      animation:fadeUp .8s .1s ease both;
+    }
+
+    .hero-title .t1 { display:block; color:var(--text); }
+    .hero-title .t2 {
+      display:block;
+      font-family:'Lora', serif; font-style:italic; font-weight:400;
+      color:transparent;
+      -webkit-text-stroke:1px rgba(255,255,255,0.2);
+      font-size:0.9em;
+    }
+    .hero-title .t3 { display:block; color:var(--cyan); }
+
+    .hero-sub {
+      font-size:16px; line-height:1.8; color:var(--bg);
+      max-width:560px; margin:0 auto 48px;
+      animation:fadeUp .8s .2s ease both;
+    }
+
+    .hero-btns {
+      display:flex; gap:16px; justify-content:center; flex-wrap:wrap;
+      animation:fadeUp .8s .3s ease both;
+    }
+
+    .btn-primary {
+      background:var(--cyan); color:var(--bg);
+      border:none; padding:14px 36px;
+      font-family:'Inter', sans-serif; font-size:12px;
+      letter-spacing:.15em; text-transform:uppercase;
+      cursor:pointer; text-decoration:none; display:inline-block;
+      transition:all .2s; font-weight:500;
+    }
+
+    .btn-primary:hover { background:var(--text); transform:translateY(-2px); }
+
+    .btn-outline {
+      background:transparent; border:1px solid var(--border2);
+      color:var(--bg); padding:14px 36px;
+      font-family:'Inter', sans-serif; font-size:12px;
+      letter-spacing:.15em; text-transform:uppercase;
+      cursor:pointer; text-decoration:none; display:inline-block;
+      transition:all .2s;
+    }
+
+    .btn-outline:hover { border-color:var(--cyan); color:var(--cyan); }
+
+    .hero-scroll {
+      position:absolute; bottom:40px; left:50%; transform:translateX(-50%);
+      display:flex; flex-direction:column; align-items:center; gap:8px;
+      animation:fadeUp .8s .6s ease both;
+      color:var(--dim); font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+    }
+
+    .scroll-line {
+      width:1px; height:48px; background:linear-gradient(to bottom, var(--cyan), transparent);
+      animation:scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%,100% { opacity:.3; } 50% { opacity:1; }
+    }
+
+    /* ═══════════════════════════════════════
+       SERVICES LANDING SECTION (new)
+    ═══════════════════════════════════════ */
+    #services {
+      position:relative; z-index:1;
+      padding:120px 32px;
+      background:var(--bg2);
+      border-top:1px solid var(--border);
+    }
+
+    .section-label {
+      font-size:32px; letter-spacing:.3em; text-transform:uppercase;
+      font-weight: bold;
+      color:var(--cyan); margin-bottom:16px;
+      display:flex; align-items:center; gap:10px;
+    }
+
+    .section-label::before { opacity:.5; }
+
+    .section-title {
+      font-family:'Montserrat', sans-serif; font-weight:800;
+      color:var(--muted);
+      font-size:clamp(28px, 4vw, 52px);
+      letter-spacing:-0.03em; line-height:1.05; margin-bottom:16px;
+    }
+
+    .section-sub {
+      color:var(--muted); font-size:14px; line-height:1.8;
+      max-width:520px; margin-bottom:72px;
+    }
+
+    .services-grid {
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:2px;
+      max-width:1200px; margin:0 auto;
+    }
+
+    .svc-card {
+      background:var(--surface);
+      border:1px solid var(--border);
+      padding:48px 44px;
+      position:relative; overflow:hidden;
+      transition:all .35s ease;
+      cursor:default;
+    }
+
+    .svc-card::after {
+      content:'';
+      position:absolute; top:0; left:0; right:0; height:2px;
+      background:linear-gradient(90deg, transparent, var(--c-accent, var(--cyan)), transparent);
+      transform:scaleX(0); transition:transform .4s ease;
+    }
+
+    .svc-card:hover::after { transform:scaleX(1); }
+    .svc-card:hover { background:rgba(255,255,255,0.045); transform:translateY(-3px); }
+
+    .svc-card:nth-child(1) { --c-accent:#00d4e8; }
+    .svc-card:nth-child(2) { --c-accent:#f07040; }
+    .svc-card:nth-child(3) { --c-accent:#8b5cf6; }
+    .svc-card:nth-child(4) { --c-accent:#22c990; }
+
+    .svc-num {
+      font-size:16px; letter-spacing:.2em; color:var(--muted);
+      font-weight: bold;
+      margin-bottom:28px;
+    }
+
+    .svc-icon { width:52px; height:52px; margin-bottom:24px; }
+
+    .svc-title {
+      font-family:'Open Sans', sans-serif;  
+      font-weight: bold;
+      color:var(--muted);
+      font-size:22px; 
+      letter-spacing:-0.02em; 
+      margin-bottom:12px;
+    }
+
+    .svc-desc {
+      font-size:18px; line-height:1.8; color:var(--muted); margin-bottom:28px;
+    }
+
+    .svc-list { list-style:none; display:flex; flex-direction:column; gap:8px; }
+
+    .svc-list li {
+      font-size:16px; color:var(--muted);
+      display:flex; align-items:center; gap:10px;
+    }
+
+    .svc-list li::before {
+      content:'';
+      width:4px; height:4px;
+      background:var(--c-accent, var(--cyan));
+      flex-shrink:0;
+    }
+
+    .svc-tags {
+      display:flex; flex-wrap:wrap; gap:6px; margin-top:24px;
+    }
+
+    .svc-tag {
+      font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+      padding:4px 10px; border:1px solid var(--border); color:var(--dim);
+    }
+
+    /* ═══════════════════════════════════════
+       PROCESS (new)
+    ═══════════════════════════════════════ */
+    #process {
+      position:relative; z-index:1;
+      padding:120px 32px;
+      border-top:1px solid var(--border);
+    }
+
+    .process-wrap { max-width:1200px; margin:0 auto; }
+    .process-header { max-width:480px; }
+
+    .process-steps {
+      display:grid; grid-template-columns:repeat(5, 1fr);
+      gap:0; margin-top:72px; position:relative;
+    }
+
+    .process-steps::before {
+      content:'';
+      position:absolute; top:26px; left:10%; right:10%;
+      height:1px;
+      background:linear-gradient(90deg, transparent, rgba(0,212,232,.3), transparent);
+    }
+
+    .proc-step { display:flex; flex-direction:column; align-items:center; text-align:center; padding:0 16px; }
+
+    .proc-num {
+      width:52px; height:52px;
+      border:1px solid var(--border2);
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Open Sans', sans-serif; font-weight:700; font-size:16px;
+      background:var(--bg); position:relative; z-index:1;
+      transition:all .3s;
+    }
+
+    .proc-step:hover .proc-num { background:var(--cyan); color:var(--bg); border-color:var(--cyan); }
+
+    .proc-title {
+      font-family:'Open Sans', sans-serif; font-weight:600; font-size:18px;
+      color:var(--muted);
+      margin:18px 0 8px;
+    }
+
+    .proc-desc { font-size:16px; line-height:1.7; color:var(--muted); }
+
+    /* ═══════════════════════════════════════
+       PROJECTS (original styled)
+    ═══════════════════════════════════════ */
+    #projects {
+      position:relative; z-index:1;
+      padding:120px 32px;
+      background:var(--bg2);
+      border-top:1px solid var(--border);
+    }
+
+    .projects-wrap { max-width:1200px; margin:0 auto; }
+
+    .projects-grid {
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:24px;
+      margin-top:64px;
+    }
+
+    .proj-card {
+      background:rgba(255,255,255,0.025);
+      border:1px solid var(--border);
+      overflow:hidden;
+      transition:all .3s ease;
+    }
+
+    .proj-card:hover { border-color:var(--border2); transform:translateY(-4px); box-shadow:0 20px 60px rgba(0,0,0,.4); }
+
+    .proj-img-wrap { position:relative; aspect-ratio:4/3; overflow:hidden; }
+
+    .proj-img-wrap img {
+      width:100%; height:100%; object-fit:cover;
+      transition:transform .4s ease;
+      filter:saturate(0.7) brightness(0.85);
+    }
+
+    .proj-card:hover .proj-img-wrap img { transform:scale(1.05); filter:saturate(1) brightness(1); }
+
+    .proj-badge {
+      position:absolute; top:16px; right:16px;
+      font-size:10px; letter-spacing:.12em; text-transform:uppercase;
+      padding:4px 10px;
+      background:rgba(6,9,15,.75); border:1px solid var(--border2);
+      color:var(--cyan); backdrop-filter:blur(8px);
+    }
+
+    .proj-body { padding:28px 28px 24px; }
+
+    .proj-title {
+      font-family:'Open Sans', sans-serif; font-weight:700; font-size:18px;
+      color:var(--muted);
+      margin-bottom:10px; letter-spacing:-0.01em;
+    }
+
+    .proj-desc { font-size:16px; line-height:1.7; color:var(--muted); margin-bottom:20px; }
+
+    .proj-specs { margin-bottom:20px; }
+    .proj-specs-label { font-size:16px; font-weight:500; margin-bottom:6px; color:var(--muted);}
+    .proj-specs ul { list-style:none; }
+    .proj-specs li { font-size:16px; color:var(--muted); font-family:'Inter', sans-serif; }
+    .proj-specs li::before { content:'• '; color:var(--cyan); }
+
+    .proj-tags { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:20px; }
+
+    .proj-tag {
+      font-size:10px; letter-spacing:.08em; text-transform:uppercase;
+      padding:4px 10px; border:1px solid var(--border2); color:var(--muted);
+    }
+
+    .proj-links { display:flex; gap:8px; }
+
+    .proj-link {
+      font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+      padding:7px 16px; border:1px solid var(--border2); color:var(--muted);
+      text-decoration:none; display:inline-flex; align-items:center; gap:6px;
+      transition:all .2s;
+    }
+
+    .proj-link:hover { border-color:var(--cyan); color:var(--cyan); }
+
+    /* ═══════════════════════════════════════
+       ABOUT (original styled)
+    ═══════════════════════════════════════ */
+    #about {
+      position:relative; z-index:1;
+      padding:120px 32px;
+      border-top:1px solid var(--border);
+    }
+
+    .about-wrap {
+      max-width:1200px; margin:0 auto;
+      display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;
+    }
+
+    .about-title {
+      font-family:'Open Sans', sans-serif; font-weight:800;
+      font-size:clamp(28px, 3.5vw, 48px);
+      color:var(--muted);
+      margin:18px 0 8px;
+      letter-spacing:-0.03em; margin-bottom:24px;
+    }
+
+    .about-text p {
+      font-size:16px; line-height:1.85; color:var(--muted); margin-bottom:16px;
+    }
+
+    .about-expertise {
+      margin-top:32px; border:1px solid var(--border); padding:28px;font-size:16px
+    }
+
+    .about-expertise h3 {
+      font-family:'Open Sans', sans-serif; font-weight:600; font-size:18px;
+      margin-bottom:18px;
+      color:var(--muted);
+    }
+
+    .about-expertise ul { list-style:none; }
+
+    .about-expertise li {
+      font-size:16px; color:var(--muted); padding:6px 0;
+      border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px;
+    }
+
+    .about-expertise li:last-child { border-bottom:none; }
+    .about-expertise li::before { content:'→'; color:var(--cyan); }
+
+    .about-img img {
+      width:100%; height:auto;
+      filter:grayscale(0.3) brightness(0.8);
+      border:1px solid var(--border);
+    }
+
+    /* ═══════════════════════════════════════
+       SKILLS (original styled)
+    ═══════════════════════════════════════ */
+    #skills {
+      position:relative; z-index:1;
+      padding:120px 32px;
+      background:var(--bg2);
+      border-top:1px solid var(--border);
+    }
+
+    .skills-wrap { max-width:1200px; margin:0 auto; }
+
+    .skills-grid {
+      display:grid; grid-template-columns:repeat(4, 1fr); gap:1px;
+      background:var(--border); margin-top:64px;
+    }
+
+    .skill-card {
+      background:var(--bg); padding:32px;
+      transition:background .2s;
+    }
+
+    .skill-card:hover { background:var(--bg3); }
+
+    .skill-icon-wrap {
+      width:40px; height:40px;
+      background:rgba(0,212,232,0.08);
+      display:flex; align-items:center; justify-content:center;
+      margin-bottom:16px;
+    }
+
+    .skill-icon-wrap svg { stroke:var(--cyan); }
+
+    .skill-card-title {
+      font-family:'Open Sans', sans-serif; font-weight:600; font-size:18px;
+      margin-bottom:16px;
+      color:var(--muted);
+    }
+
+    .skill-pills { display:flex; flex-wrap:wrap; gap:6px; }
+
+    .skill-pill {
+      font-size:10px; letter-spacing:.08em; text-transform:uppercase;
+      padding:4px 10px; background:rgba(255,255,255,0.04);
+      border:1px solid var(--border2); color:var(--muted);
+    }
+
+    /* ═══════════════════════════════════════
+       CONTACT FORM (new)
+    ═══════════════════════════════════════ */
+    #contact {
+      position:relative; z-index:1;
+      padding:120px 32px;
+      border-top:1px solid var(--border);
+      overflow:hidden;
+    }
+
+    #contact::before {
+      content:'';
+      position:absolute; top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      width:700px; height:700px; pointer-events:none;
+      background:radial-gradient(circle, rgba(0,212,232,0.05) 0%, transparent 65%);
+    }
+
+    .contact-wrap { max-width:1100px; margin:0 auto; }
+
+    .contact-layout {
+      display:grid; grid-template-columns:1fr 1.4fr; gap:80px;
+      align-items:start; margin-top:64px;
+    }
+
+    .contact-info-title {
+      font-family:'Lora', serif; font-style:italic; font-weight:400;
+      font-size:clamp(24px, 2.5vw, 38px);
+      line-height:1.35; margin-bottom:24px; color:var(--text);
+    }
+
+    .contact-info-title em { color:var(--muted); font-style:normal; }
+
+    .contact-info-sub {
+      font-size:16px; line-height:1.8; color:var(--muted); margin-bottom:40px;
+    }
+
+    .contact-detail {
+      display:flex; align-items:center; gap:14px;
+      margin-bottom:16px; text-decoration:none;
+    }
+
+    .contact-detail-icon {
+      width:40px; height:40px; flex-shrink:0;
+      border:1px solid var(--border2);
+      display:flex; align-items:center; justify-content:center;
+    }
+
+    .contact-detail-icon svg { stroke:var(--cyan); }
+
+    .contact-detail-text .label {
+      font-size:14px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted);
+    }
+
+    .contact-detail-text .val {
+      font-size:16px; color:var(--muted);
+    }
+
+    .social-row { display:flex; gap:10px; margin-top:32px; }
+
+    .social-btn {
+      width:40px; height:40px; border:1px solid var(--border2);
+      display:flex; align-items:center; justify-content:center;
+      text-decoration:none; transition:all .2s; color:var(--muted);
+    }
+
+    .social-btn:hover { border-color:var(--cyan); color:var(--cyan); }
+    .social-btn svg { stroke:currentColor; }
+
+    /* FORM */
+    .contact-form-wrap {
+      background:rgba(255,255,255,0.025);
+      border:1px solid var(--border);
+      padding:48px 44px;
+    }
+
+    .form-title {
+      font-family:'Open Sans', sans-serif; font-weight:700; font-size:18px;
+      margin-bottom:8px;
+    }
+
+    .form-sub { font-size:16px; color:var(--muted); margin-bottom:36px; }
+
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+
+    .form-group { margin-bottom:20px;}
+
+    .form-group label {
+      display:block; font-size:14px; letter-spacing:.2em; text-transform:uppercase;
+      color:var(--muted); margin-bottom:8px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width:100%; background:rgba(255,255,255,0.03);
+      border:1px solid var(--border2); color:var(--text);
+      font-family:'Inter', sans-serif; font-size:16px;
+      padding:12px 16px; outline:none;
+      transition:border-color .2s;
+      appearance:none; -webkit-appearance:none;
+      color:var(--muted);
+    }
+
+    .form-group select {
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a6480' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat:no-repeat; background-position:right 16px center;
+      padding-right:40px; cursor:pointer;
+    }
+
+    .form-group select option { background:var(--bg2); color:var(--text); }
+
+    .form-group textarea { resize:vertical; min-height:120px; }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color:var(--cyan);
+      box-shadow:0 0 0 2px rgba(0,212,232,0.08);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color:var(--dim); }
+
+    .form-check { display:flex; align-items:flex-start; gap:12px; margin-bottom:28px; }
+
+    .form-check input[type="checkbox"] {
+      width:16px; height:16px; margin-top:2px; flex-shrink:0;
+      accent-color:var(--cyan); cursor:pointer;
+    }
+
+    .form-check label { font-size:12px; color:var(--muted); cursor:pointer; }
+
+    .form-submit {
+      width:100%; background:var(--cyan); color:var(--bg);
+      border:none; padding:15px;
+      font-family:'Inter', sans-serif; font-size:12px;
+      letter-spacing:.18em; text-transform:uppercase;
+      cursor:pointer; font-weight:500; transition:all .2s;
+      display:flex; align-items:center; justify-content:center; gap:10px;
+    }
+
+    .form-submit:hover { background:var(--text); transform:translateY(-1px); }
+    .form-submit:active { transform:translateY(0); }
+
+    .form-submit svg { transition:transform .2s; }
+    .form-submit:hover svg { transform:translateX(4px); }
+
+    /* success state */
+    .form-success {
+      display:none; text-align:center; padding:40px 20px;
+    }
+
+    .form-success.show { display:block; }
+    .form-success-icon { font-size:48px; margin-bottom:16px; }
+
+    .form-success h3 {
+      font-family:'Syne', sans-serif; font-weight:700; font-size:22px;
+      margin-bottom:8px;
+    }
+
+    .form-success p { font-size:16px; color:var(--muted); }
+
+    /* ═══════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════ */
+    footer {
+      position:relative; z-index:1;
+      background:var(--bg2);
+      border-top:1px solid var(--border);
+      padding:32px;
+    }
+
+    .footer-inner {
+      max-width:1200px; margin:0 auto;
+      display:flex; align-items:center; justify-content:space-between;
+      flex-wrap:wrap; gap:16px;
+    }
+
+    .footer-logo {
+      font-family:'Syne', sans-serif; font-weight:800; font-size:16px;
+      color:var(--cyan); text-decoration:none;
+    }
+
+    .footer-copy { font-size:18px; color:var(--muted); }
+
+    .footer-links { display:flex; gap:24px; }
+    .footer-links a { font-size:18px; color:var(--muted); text-decoration:none; transition:color .2s; }
+    .footer-links a:hover { color:var(--cyan); }
+
+    /* ═══════════════════════════════════════
+       ANIMATIONS / UTILITIES
+    ═══════════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(24px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    .anim {
+      opacity:0; transform:translateY(28px);
+      transition:opacity .65s ease, transform .65s ease;
+    }
+
+    .anim.in { opacity:1; transform:translateY(0); }
+
+    .center-hdr { text-align:center; max-width:600px; margin:0 auto; }
+
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
+    @media (max-width:900px) {
+      .nav-links { display:none; }
+      .nav-mobile-btn { display:block; }
+
+      .services-grid,
+      .about-wrap,
+      .contact-layout { grid-template-columns:1fr; gap:40px; }
+
+      .projects-grid { grid-template-columns:1fr 1fr; }
+      .skills-grid { grid-template-columns:1fr 1fr; }
+
+      .process-steps { grid-template-columns:1fr 1fr; }
+      .process-steps::before { display:none; }
+
+      .form-row { grid-template-columns:1fr; }
+
+      .hero-title { font-size:clamp(36px, 10vw, 60px); }
+    }
+
+    @media (max-width:600px) {
+      .projects-grid { grid-template-columns:1fr; }
+      .skills-grid { grid-template-columns:1fr; }
+      .form-row { grid-template-columns:1fr; }
+    }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800 relative">
+<body>
 
-    <!-- Header -->
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-6 py-6 flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-blue-600">Trung Tâm Điện Tử Xuân Trường</h1>
-            <a href="tel:0356299082" class="bg-blue-600 text-white px-5 py-2 rounded-xl hover:bg-blue-700 transition">📞 0356 299 082</a>
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">THTech</a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get In Touch</a>
+    <button class="nav-mobile-btn" onclick="document.querySelector('.nav-links').style.display = document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex'">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-bg-overlay"></div>
+
+  <!-- Animated PCB traces -->
+  <div class="pcb-lines">
+    <svg viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice">
+      <path class="trace trace-1" stroke-dasharray="600" d="M1100 0 L1100 200 L900 200 L900 400 L1200 400"/>
+      <path class="trace trace-2" stroke-dasharray="600" d="M1300 800 L1300 500 L1050 500 L1050 300"/>
+      <path class="trace trace-3" stroke-dasharray="600" d="M1440 150 L1200 150 L1200 350 L1350 350 L1350 550"/>
+      <path class="trace trace-4" stroke-dasharray="600" d="M1400 0 L1400 100 L1150 100"/>
+      <circle cx="1100" cy="200" r="4" fill="#00d4e8" opacity="0.4"/>
+      <circle cx="900" cy="400" r="4" fill="#00d4e8" opacity="0.4"/>
+      <circle cx="1050" cy="300" r="4" fill="#00d4e8" opacity="0.4"/>
+      <circle cx="1200" cy="350" r="4" fill="#00d4e8" opacity="0.4"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span></span>End-to-End Engineering<span></span></div>
+    <p class="hero-sub">
+      Designing innovative embedded systems and custom electronics solutions — from PCB to production, firmware to mobile app.
+    </p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary">Our Services</a>
+      <a href="#projects" class="btn-outline">View Projects</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section id="services">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="anim">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Four Disciplines,<br>One Team.</h2>
+      <p class="section-sub">Complete product lifecycle coverage — from circuit design to the app store, all under one roof with seamless integration.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <!-- PCB -->
+      <div class="svc-card anim">
+        <div class="svc-num">01 / HARDWARE</div>
+        <svg class="svc-icon" viewBox="0 0 52 52" fill="none">
+          <rect x="6" y="6" width="40" height="40" rx="2" stroke="#00d4e8" stroke-width="1.5"/>
+          <rect x="15" y="15" width="22" height="22" rx="1" stroke="#00d4e8" stroke-width="1"/>
+          <line x1="6" y1="19" x2="0" y2="19" stroke="#00d4e8" stroke-width="1.5"/>
+          <line x1="6" y1="26" x2="0" y2="26" stroke="#00d4e8" stroke-width="1.5"/>
+          <line x1="6" y1="33" x2="0" y2="33" stroke="#00d4e8" stroke-width="1.5"/>
+          <line x1="46" y1="19" x2="52" y2="19" stroke="#00d4e8" stroke-width="1.5"/>
+          <line x1="46" y1="26" x2="52" y2="26" stroke="#00d4e8" stroke-width="1.5"/>
+          <line x1="46" y1="33" x2="52" y2="33" stroke="#00d4e8" stroke-width="1.5"/>
+          <line x1="19" y1="0" x2="19" y2="6" stroke="#00d4e8" stroke-width="1.5"/>
+          <line x1="26" y1="0" x2="26" y2="6" stroke="#00d4e8" stroke-width="1.5"/>
+          <line x1="33" y1="0" x2="33" y2="6" stroke="#00d4e8" stroke-width="1.5"/>
+          <rect x="21" y="21" width="10" height="10" fill="#00d4e8" opacity="0.25"/>
+        </svg>
+        <h3 class="svc-title">Hardware & PCB Design</h3>
+        <p class="svc-desc">Custom PCB layouts engineered for real-world performance. From schematic capture to DFM-optimized production files.</p>
+        <ul class="svc-list">
+          <li>Schematic capture & circuit design</li>
+          <li>Multi-layer PCB layout & routing</li>
+          <li>Signal integrity & EMC analysis</li>
+          <li>Power electronics & analog design</li>
+          <li>Prototype fab & bring-up testing</li>
+        </ul>
+        <div class="svc-tags">
+          <span class="svc-tag">Altium</span>
+          <span class="svc-tag">KiCad</span>
+          <span class="svc-tag">SPICE</span>
+          <span class="svc-tag">EMC/EMI</span>
         </div>
-    </header>
+      </div>
 
-    <!-- Hero Section -->
-    <section class="bg-blue-50 py-20">
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-6 text-gray-900">Thiết kế, Sửa Chữa Điện Tử - Điện Lạnh Tại Nhà</h2>
-            <p class="text-lg text-gray-600 mb-8">
-                Chuyên sửa chữa điều hoà, tủ lạnh, máy giặt, TV, Laptop, Bếp từ, nồi cơm điện<br>
-                Có mặt nhanh 30 phút - Làm việc chuyên nghiệp - Uy tín.
-            </p>
-            <a href="tel:0356299082" class="bg-blue-600 text-white px-8 py-3 rounded-2xl text-lg hover:bg-blue-700 transition">Gọi sửa ngay</a>
+      <!-- Mechanical -->
+      <div class="svc-card anim">
+        <div class="svc-num">02 / MECHANICAL</div>
+        <svg class="svc-icon" viewBox="0 0 52 52" fill="none">
+          <circle cx="26" cy="26" r="18" stroke="#f07040" stroke-width="1.5"/>
+          <circle cx="26" cy="26" r="7" stroke="#f07040" stroke-width="1"/>
+          <path d="M26 8 L29 13 L26 11 L23 13 Z" fill="#f07040" opacity="0.7"/>
+          <path d="M26 44 L23 39 L26 41 L29 39 Z" fill="#f07040" opacity="0.7"/>
+          <path d="M8 26 L13 23 L11 26 L13 29 Z" fill="#f07040" opacity="0.7"/>
+          <path d="M44 26 L39 29 L41 26 L39 23 Z" fill="#f07040" opacity="0.7"/>
+          <circle cx="26" cy="26" r="3" fill="#f07040"/>
+        </svg>
+        <h3 class="svc-title">Mechanical Design</h3>
+        <p class="svc-desc">Precision mechanical engineering for enclosures, assemblies, and structural components — built for manufacturing.</p>
+        <ul class="svc-list">
+          <li>3D CAD modeling & assemblies</li>
+          <li>Enclosure & housing design</li>
+          <li>Thermal management engineering</li>
+          <li>FEA & structural simulation</li>
+          <li>Sheet metal & injection molding DFM</li>
+        </ul>
+        <div class="svc-tags">
+          <span class="svc-tag">SolidWorks</span>
+          <span class="svc-tag">CATIA</span>
+          <span class="svc-tag">FEA</span>
+          <span class="svc-tag">3D Print</span>
         </div>
-    </section>
+      </div>
 
-    <!-- Services -->
-    <section class="py-16 bg-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <h3 class="text-3xl font-bold text-center mb-12">DỊCH VỤ SỬA CHỮA TOÀN QUỐC</h3>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-gray-50 p-6 rounded-2xl shadow">
-                    <h4 class="text-xl font-semibold mb-4 text-blue-600">Sửa điều hoà Mono,Inverter</h4>
-					<ul class="tick-list">
-					  <li>Không lên đèn báo và chuông</li>
-					  <li>Máy lên đèn báo sau vài giây báo lỗi ngay</li>
-					  <li>Máy thấy quạt lạnh không quay, sau khoảng 1 phút máy báo lỗi</li>
-					  <li>Máy có hiện tượng quạt quay lại tắt lại quay, lặp đi lặp lại, sau 1 phút thì dừng và báo lỗi</li>
-					  <li>Quạt dàn lạnh vẫn chạy, nhưng chỉ có gió, không có hơi lạnh, máy báo lỗi</li>
-					  <li>Máy chạy nhưng kém mát</li>
-					  <li>Máy chập chờn có lúc tự tắt, tự lên nguồn</li>
-					  <li>Sửa mạch giao tiếp và điều khiển công suất máy nén</li>
-					  <li>Sửa lỗi cảm biến dàn nóng và lạnh không hoạt động</li>
-					</ul>
-                </div>
-				<div class="bg-gray-50 p-6 rounded-2xl shadow">
-                    <h4 class="text-xl font-semibold mb-4 text-blue-600">Sửa tủ lạnh mini, 2 cánh, tủ đông </h4>
-					<ul class="tick-list">
-					  <li>Tủ không vào điện, không có đèn sáng khi mở cửa, không thấy quạt quay.</li>
-					  <li>Tủ kém lạnh, đá không cứng (quạt, trở phá băng)</li>
-					  <li>Đèn không sáng khi mở cửa, tủ vẫn chạy</li>
-					  <li>Tủ thấy quạt không chạy</li>
-					  <li>Tủ thấy Block không khởi động</li>
-					  <li>Tủ thấy Block khởi động rồi tắt ngay</li>
-					  <li>Xử lý dò Ga, bơm ga</li>
-					</ul>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-2xl shadow">
-                    <h4 class="text-xl font-semibold mb-4 text-blue-600">Sửa máy giặt cửa trên, lồng ngang</h4>
-					<ul class="tick-list">
-						<li>Máy giặt rung lắc và kêu to bất thường</li>
-						<li>Máy loạn phím</li>
-						<li>Chế độ xả tràn nhưng nước không chảy khỏi ống xả</li>
-						<li>Máy không tự động tắt nguồn khi giặt kết thúc</li>
-						<li>Thời gian xả nước giặt quá lâu</li>
-						<li>Máy giặt không vào nước</li>
-						<li>Máy giặt không thực hiện chức năng vắt</li>
-						<li>Máy giặt trong trạng thái không hoạt động dù có cắm điện</li>
-					</ul>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-2xl shadow">
-                    <h4 class="text-xl font-semibold mb-4 text-blue-600">Sửa Tivi LED, LCD</h4>
-					<ul class="tick-list">
-						<li>TV có đèn báo chờ nhưng khi bật điều khiển không lên và đèn chờ nháy sau đó</li>
-						<li>TV đang khởi động thì bị treo hoặc khởi động lại.</li>
-						<li>TV bị mất ánh sáng phía sau, vẫn có tiếng, có hình mờ</li>
-						<li>TV có ánh sáng phía sau vài giây lại mất, sony nháy 6 cái, các máy khác vẫn có tiếng</li>
-						<li>TV không nhận điều khiển từ xa, bấm được trên máy.</li>
-						<li>TV không có tiếng ra loa, có hình bình thường</li>
-						<li>TV bị rè, bị nghẹt mũi</li>
-						<li>TV không thu được Wifi, không nhận tín hiệu từ các cổng HDMI hoặc USB</li>
-						<li>TV không dò được kênh, xem được HDMI hoặc cổng AV</li>
-					</ul>
-                </div>
-				<div class="bg-gray-50 p-6 rounded-2xl shadow">
-                    <h4 class="text-xl font-semibold mb-4 text-blue-600">Sửa PC, Laptop</h4>
-                    <ul class="tick-list">
-						<li>Sửa lỗi máy treo, lag, máy chạy chậm</li>
-						<li>Sửa lỗi mất kết nối mạng Internet, mạng Lan, Wifi</li>
-						<li>Máy lỗi ổ cứng, khôi phục dữ liệu</li>
-						<li>Laptop, PC lỗi CPU, RAM, bàn phím</li>
-						<li>Vệ sinh bảo dưỡng máy tính tra keo tản nhiệt</li>
-						<li>Máy gặp bị lỗi nguồn, không vào Pin</li>
-						<li>Máy lỗi Mainboard</li>
-						<li>Kiểm tra, sửa chữa các lỗi phần cứng và phần mềm cho PC, laptop</li>
-						<li>Sửa chữa, thay thế, nâng cấp các linh kiện laptop, Macbook, PC</li>
-						<li>Cài đặt Windows, các phần mềm Tin học văn phòng, Autocad...</li>
-					</ul>
-                </div>
-				<div class="bg-gray-50 p-6 rounded-2xl shadow">
-                    <h4 class="text-xl font-semibold mb-4 text-blue-600">Sửa máy in Laser</h4>
-                    <ul class="tick-list">
-						<li>Máy In Không Hoạt Động</li>
-						<li>Máy In Bị Treo</li>
-						<li>Hủy Tài Liệu Đang In</li>
-						<li>Bản In Bị Nhòe Chữ, Nhòe Đường Kẻ</li>
-						<li>Bản In Trắng Toàn Bộ Sau Khi In</li>
-						<li>Bản In Có Những Chấm Nhỏ Hoặc Vệt Đen To Đậm Ngang Bản In</li>
-						<li>Bản In Có Một Vệt Đen Chạy Dọc, Thẳng Từ Trên Xuống</li>
-						<li>Lỗi Khi In Các Vị Trí Không Đều, Tạo Khoảng Trống Giữa</li>
-						<li>Lỗi In Sai Màu</li>
-						<li>Lỗi Không Kéo Được Giấy</li>
-						<li>Lỗi Kéo Giấy Nhiều Tờ Cùng Một Lúc</li>
-						<li>Lỗi Máy In Đèn Vàng Liên Tục Trên Máy In</li>
-						<li>Lỗi Máy In Kêu To Khi In</li>
-					</ul>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-2xl shadow">
-                    <h4 class="text-xl font-semibold mb-4 text-blue-600">Sửa Âm li,Karaoke công suất</h4>
-                    <ul class="tick-list">
-						<li>Dàn karaoke không phát ra âm thanh</li>
-						<li>Dàn loa karaoke chỉ nghe được 1 bên</li>
-						<li>Dàn karaoke phát ra nhạc nhưng micro không phát ra tiếng</li>
-						<li>Âm thanh dàn karaoke bị méo, rè, thiếu lực</li>
-						<li>Lỗi âm thanh phát ra rất nhỏ</li>
-						<li>Điều chỉnh Bass (âm trầm), Tress (âm bổng) không tác dụng</li>
-						<li>Amply phát ra những tiếng nổ lộp bộp</li>
-						<li>Amply không phát ra tiếng</li>
-						<li>Amply Bị Hư Linh Kiện (IC Công Suất, Tụ Điện, Mạch Bảo Vệ)</li>
-						<li>Micro Bị Lỗi Hoặc Không Tương Thích</li>
-						<li>Dây Loa Bị Lỏng, Đứt Hoặc Chập Mạch</li>	
-					</ul>
-                </div>
-				<div class="bg-gray-50 p-6 rounded-2xl shadow">
-                    <h4 class="text-xl font-semibold mb-4 text-blue-600">Sửa bếp từ, bếp hồng ngoại, nồi cơm điện</h4>
-					<ul class="tick-list">
-						<li>Bếp từ không lên nguồn/mất nguồn</li>
-						<li>Bếp báo lỗi E0, E1, E2, E3, E4, E5, E6 ...</li>
-						<li>Bật lên rồi tắt, đang nấu tự ngắt</li>
-						<li>Không nhận nồi, kén nồi</li>
-						<li>Nấu không nóng, lúc nóng lúc không</li>
-						<li>Liệt phím cảm ứng, loạn phím, không bấm được</li>
-						<li>Nổ cầu chì, cháy sò, cháy IGBT, hỏng mạch công suất</li>
-						<li>Hỏng quạt, kêu to, không tản nhiệt</li>
-						<li>Chập điện, nhảy aptomat</li>
-						<li>Vỡ mặt kính, nứt kính, thay kính bếp từ</li>
-						<li>Bếp vào nước, ẩm mạch, mùi khét, khói</li>
-						<li>Các lỗi liên quan đến bếp từ, hồng ngoại, nồi cơm điện</li>
-					</ul>
-                </div>
-				<div class="bg-gray-50 p-6 rounded-2xl shadow">
-                    <h4 class="text-xl font-semibold mb-4 text-blue-600">Sửa chữa đồ điện gia dụng, lắp đặt camera</h4>
-					<ul class="tick-list">
-						<li>Sửa quạt điện cơ, thông minh</li>
-						<li>Sửa bình nóng lạnh</li>
-						<li>Lắp đặt camera</li>
-						<li>Sửa bình lọc nước</li>
-						<li>Sửa lò vi sóng đánh lửa khi sử dụng, nóng chậm, nổ cầu chì, không vào điện </li>
-					</ul>
-                </div>
+      <!-- Firmware -->
+      <div class="svc-card anim">
+        <div class="svc-num">03 / FIRMWARE</div>
+        <svg class="svc-icon" viewBox="0 0 52 52" fill="none">
+          <rect x="4" y="10" width="44" height="32" rx="2" stroke="#8b5cf6" stroke-width="1.5"/>
+          <line x1="4" y1="18" x2="48" y2="18" stroke="#8b5cf6" stroke-width="0.5" opacity="0.4"/>
+          <text x="10" y="31" fill="#8b5cf6" font-size="8" font-family="monospace" opacity="0.9">0x1A 0xFF</text>
+          <text x="10" y="39" fill="#8b5cf6" font-size="7" font-family="monospace" opacity="0.5">IRQ_HANDLER</text>
+          <rect x="34" y="20" width="10" height="4" rx="1" fill="#8b5cf6" opacity="0.35"/>
+        </svg>
+        <h3 class="svc-title">Embedded Firmware</h3>
+        <p class="svc-desc">Bare-metal to RTOS-based firmware engineered for reliability. From bootloaders and drivers to full IoT stacks with OTA.</p>
+        <ul class="svc-list">
+          <li>RTOS development (FreeRTOS, Zephyr)</li>
+          <li>Device drivers & BSP bring-up</li>
+          <li>IoT connectivity (BLE, WiFi, LoRa, LTE)</li>
+          <li>Secure OTA firmware update systems</li>
+          <li>Low-power & battery optimization</li>
+        </ul>
+        <div class="svc-tags">
+          <span class="svc-tag">C/C++</span>
+          <span class="svc-tag">FreeRTOS</span>
+          <span class="svc-tag">STM32</span>
+          <span class="svc-tag">ESP32</span>
+        </div>
+      </div>
+
+      <!-- Mobile -->
+      <div class="svc-card anim">
+        <div class="svc-num">04 / MOBILE APP</div>
+        <svg class="svc-icon" viewBox="0 0 52 52" fill="none">
+          <rect x="14" y="4" width="24" height="44" rx="4" stroke="#22c990" stroke-width="1.5"/>
+          <line x1="20" y1="10" x2="32" y2="10" stroke="#22c990" stroke-width="1" opacity="0.5"/>
+          <circle cx="26" cy="42" r="2.5" stroke="#22c990" stroke-width="1"/>
+          <rect x="18" y="16" width="16" height="9" rx="1" fill="#22c990" opacity="0.15" stroke="#22c990" stroke-width="0.5"/>
+          <line x1="18" y1="29" x2="29" y2="29" stroke="#22c990" stroke-width="1" opacity="0.5"/>
+          <line x1="18" y1="33" x2="25" y2="33" stroke="#22c990" stroke-width="1" opacity="0.3"/>
+          <line x1="18" y1="37" x2="32" y2="37" stroke="#22c990" stroke-width="1" opacity="0.3"/>
+        </svg>
+        <h3 class="svc-title">Mobile App Development</h3>
+        <p class="svc-desc">Cross-platform mobile apps that bridge users and hardware. Deep BLE/WiFi integration with polished, intuitive UX.</p>
+        <ul class="svc-list">
+          <li>iOS & Android native development</li>
+          <li>React Native / Flutter cross-platform</li>
+          <li>BLE & hardware device pairing</li>
+          <li>Real-time data dashboards</li>
+          <li>App Store & Play Store deployment</li>
+        </ul>
+        <div class="svc-tags">
+          <span class="svc-tag">React Native</span>
+          <span class="svc-tag">Flutter</span>
+          <span class="svc-tag">Swift</span>
+          <span class="svc-tag">Kotlin</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROCESS ═══ -->
+<section id="process">
+  <div class="process-wrap">
+    <div class="process-header anim">
+      <div class="section-label">How We Work</div>
+      <h2 class="section-title">Concept to<br>Production.</h2>
+    </div>
+    <div class="process-steps">
+      <div class="proc-step anim">
+        <div class="proc-num">01</div>
+        <div class="proc-title">Discovery</div>
+        <div class="proc-desc">Requirements, feasibility, and architecture planning</div>
+      </div>
+      <div class="proc-step anim">
+        <div class="proc-num">02</div>
+        <div class="proc-title">Design</div>
+        <div class="proc-desc">Concurrent HW schematic, CAD, and software architecture</div>
+      </div>
+      <div class="proc-step anim">
+        <div class="proc-num">03</div>
+        <div class="proc-title">Prototype</div>
+        <div class="proc-desc">Rapid iteration with functional prototypes and firmware bring-up</div>
+      </div>
+      <div class="proc-step anim">
+        <div class="proc-num">04</div>
+        <div class="proc-title">Validate</div>
+        <div class="proc-desc">EMC testing, stress testing, real-world field validation</div>
+      </div>
+      <div class="proc-step anim">
+        <div class="proc-num">05</div>
+        <div class="proc-title">Deliver</div>
+        <div class="proc-desc">Production handoff with full documentation and support</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROJECTS ═══ -->
+<section id="projects">
+  <div class="projects-wrap">
+    <div class="center-hdr anim">
+      <div class="section-label" style="justify-content:center;">Featured Work</div>
+      <h2 class="section-title">Projects</h2>
+      <p style="color:var(--muted);font-size:16px;line-height:1.8;margin-top:12px;">A selection of hardware and firmware projects demonstrating expertise in embedded systems design</p>
+    </div>
+
+    <div class="projects-grid">
+
+      <div class="proj-card anim">
+        <div class="proj-img-wrap">
+          <img src="assets/IoT_hardware_device_837d1052-DF3__m2-.png" alt="IoT Environmental Sensor Network">
+          <span class="proj-badge">Embedded Systems</span>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title">IoT Environmental Sensor Network</h3>
+          <p class="proj-desc">Low-power wireless sensor network for environmental monitoring with mesh networking capabilities.</p>
+          <div class="proj-specs">
+            <div class="proj-specs-label">Technical Specs:</div>
+            <ul><li>Battery life: 2+ years</li><li>Range: 5km</li><li>Sensors: Temp, Humidity, Air Quality</li></ul>
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag">ESP32</span>
+            <span class="proj-tag">LoRaWAN</span>
+            <span class="proj-tag">C++</span>
+            <span class="proj-tag">MQTT</span>
+          </div>
+          <div class="proj-links">
+            <a href="#" class="proj-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card anim">
+        <div class="proj-img-wrap">
+          <img src="assets/Power_electronics_board_69e51770-BwXznXee.png" alt="High-Efficiency SMPS">
+          <span class="proj-badge">Hardware</span>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title">High-Efficiency Switch-Mode Power Supply</h3>
+          <p class="proj-desc">Custom SMPS design with 95% efficiency, multiple voltage rails, and comprehensive protection circuits.</p>
+          <div class="proj-specs">
+            <div class="proj-specs-label">Technical Specs:</div>
+            <ul><li>Input: 85–265VAC</li><li>Output: 5V/12V/24V</li><li>Efficiency: &gt;95%</li></ul>
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag">KiCAD</span>
+            <span class="proj-tag">SPICE</span>
+            <span class="proj-tag">Altium Designer</span>
+          </div>
+          <div class="proj-links">
+            <a href="#" class="proj-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+              Details
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card anim">
+        <div class="proj-img-wrap">
+          <img src="assets/Robotics_hardware_project_874e4a4e-Ro79tMcu.png" alt="Autonomous Mobile Robot">
+          <span class="proj-badge">Embedded Systems</span>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title">Autonomous Mobile Robot Platform</h3>
+          <p class="proj-desc">Modular robotics platform with advanced sensor fusion and real-time path planning capabilities.</p>
+          <div class="proj-specs">
+            <div class="proj-specs-label">Technical Specs:</div>
+            <ul><li>SLAM navigation</li><li>12+ hour runtime</li><li>Payload: 5kg</li></ul>
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag">ARM Cortex-M7</span>
+            <span class="proj-tag">ROS2</span>
+            <span class="proj-tag">FreeRTOS</span>
+            <span class="proj-tag">C/C++</span>
+          </div>
+          <div class="proj-links">
+            <a href="#" class="proj-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card anim">
+        <div class="proj-img-wrap">
+          <img src="assets/Firmware_development_setup_bfd7747c-DAqbF94N.png" alt="Secure Bootloader">
+          <span class="proj-badge">Firmware</span>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title">Secure Bootloader &amp; OTA Update System</h3>
+          <p class="proj-desc">Production-grade bootloader with encrypted firmware updates, rollback protection, and hardware security.</p>
+          <div class="proj-specs">
+            <div class="proj-specs-label">Technical Specs:</div>
+            <ul><li>AES-256 encryption</li><li>Secure boot chain</li><li>Delta updates</li></ul>
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag">ARM TrustZone</span>
+            <span class="proj-tag">mbedTLS</span>
+            <span class="proj-tag">C</span>
+            <span class="proj-tag">Python</span>
+          </div>
+          <div class="proj-links">
+            <a href="#" class="proj-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              GitHub
+            </a>
+            <a href="#" class="proj-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+              Details
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card anim">
+        <div class="proj-img-wrap">
+          <img src="assets/Engineering_workspace_project_095c80d5-BNjEnO2G.png" alt="Test Equipment">
+          <span class="proj-badge">Hardware</span>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title">Custom Test &amp; Measurement Equipment</h3>
+          <p class="proj-desc">Specialized testing equipment for production line quality assurance with automated reporting.</p>
+          <div class="proj-specs">
+            <div class="proj-specs-label">Technical Specs:</div>
+            <ul><li>Test rate: 100 units/hr</li><li>Accuracy: ±0.1%</li><li>Full automation</li></ul>
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag">STM32</span>
+            <span class="proj-tag">LabVIEW</span>
+            <span class="proj-tag">Python</span>
+            <span class="proj-tag">PostgreSQL</span>
+          </div>
+          <div class="proj-links">
+            <a href="#" class="proj-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+              Details
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+  <div class="about-wrap">
+    <div class="about-text anim">
+      <div class="section-label">Who We Are</div>
+      <h2 class="about-title">About THTech</h2>
+      <p>Specializing in hardware and firmware engineering with over a decade of experience designing embedded systems for industrial, consumer, and IoT applications.</p>
+      <p>Expert in full-stack embedded development — from initial PCB design and prototyping through firmware development, testing, and production deployment.</p>
+      <p>Passionate about creating efficient, robust solutions that bridge the physical and digital worlds. Experienced in both low-level firmware optimization and high-level system architecture.</p>
+      <div class="about-expertise">
+        <h3>Expertise Areas</h3>
+        <ul>
+          <li>Embedded Systems Design &amp; Development</li>
+          <li>PCB Design &amp; Hardware Prototyping</li>
+          <li>Real-Time Operating Systems (RTOS)</li>
+          <li>IoT &amp; Wireless Communication Protocols</li>
+          <li>Power Electronics &amp; Analog Circuit Design</li>
+        </ul>
+      </div>
+    </div>
+    <div class="about-img anim">
+      <img src="assets/Engineering_workspace_project_095c80d5-BNjEnO2G.png" alt="Engineering workspace">
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SKILLS ═══ -->
+<section id="skills">
+  <div class="skills-wrap">
+    <div class="center-hdr anim">
+      <div class="section-label" style="justify-content:center;">Capabilities</div>
+      <h2 class="section-title">Technical Skills</h2>
+      <p style="color:var(--muted);font-size:16px;line-height:1.8;margin-top:12px;">Comprehensive expertise across the embedded systems development stack</p>
+    </div>
+
+    <div class="skills-grid">
+
+      <div class="skill-card anim">
+        <div class="skill-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg>
+        </div>
+        <h3 class="skill-card-title">Embedded Systems</h3>
+        <div class="skill-pills">
+          <span class="skill-pill">ARM Cortex-M/A</span>
+          <span class="skill-pill">ESP32/ESP8266</span>
+          <span class="skill-pill">STM32</span>
+          <span class="skill-pill">Nordic nRF</span>
+          <span class="skill-pill">RISC-V</span>
+          <span class="skill-pill">PIC/AVR</span>
+        </div>
+      </div>
+
+      <div class="skill-card anim">
+        <div class="skill-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+        </div>
+        <h3 class="skill-card-title">PCB Design</h3>
+        <div class="skill-pills">
+          <span class="skill-pill">KiCAD</span>
+          <span class="skill-pill">Altium Designer</span>
+          <span class="skill-pill">Eagle</span>
+          <span class="skill-pill">Signal Integrity</span>
+          <span class="skill-pill">EMC/EMI</span>
+          <span class="skill-pill">DFM/DFA</span>
+        </div>
+      </div>
+
+      <div class="skill-card anim">
+        <div class="skill-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+        </div>
+        <h3 class="skill-card-title">Programming</h3>
+        <div class="skill-pills">
+          <span class="skill-pill">C/C++</span>
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">Rust</span>
+          <span class="skill-pill">Assembly</span>
+          <span class="skill-pill">VHDL/Verilog</span>
+          <span class="skill-pill">MATLAB</span>
+        </div>
+      </div>
+
+      <div class="skill-card anim">
+        <div class="skill-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <h3 class="skill-card-title">Tools &amp; Protocols</h3>
+        <div class="skill-pills">
+          <span class="skill-pill">I2C/SPI/UART</span>
+          <span class="skill-pill">CAN/LIN</span>
+          <span class="skill-pill">Bluetooth/WiFi</span>
+          <span class="skill-pill">LoRa/LoRaWAN</span>
+          <span class="skill-pill">Git</span>
+          <span class="skill-pill">JTAG/SWD</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT (with form) ═══ -->
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="center-hdr anim" style="text-align:left;max-width:none;">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Start a Project.</h2>
+    </div>
+
+    <div class="contact-layout">
+
+      <!-- Left: info -->
+      <div class="anim">
+        <p class="contact-info-title">Open for collaboration on <em>innovative</em> hardware and firmware projects.</p>
+        <p class="contact-info-sub">Whether you have a full spec or just an idea — reach out and let's figure out if we're a fit. We typically respond within 24 hours.</p>
+
+        <a href="mailto:contact@thtech247.com" class="contact-detail">
+          <div class="contact-detail-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </div>
+          <div class="contact-detail-text">
+            <div class="label">Email</div>
+            <div class="val">contact@thtech247.com</div>
+          </div>
+        </a>
+
+        <a href="https://www.thtech247.wordpress.com" class="contact-detail" target="_blank" style="text-decoration:none;">
+          <div class="contact-detail-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+          </div>
+          <div class="contact-detail-text">
+            <div class="label">Website</div>
+            <div class="val">thtech247.wordpress.com</div>
+          </div>
+        </a>
+
+        <div class="contact-detail" style="cursor:default;">
+          <div class="contact-detail-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="contact-detail-text">
+            <div class="label">Location</div>
+            <div class="val">Available Worldwide · Remote-First</div>
+          </div>
+        </div>
+
+        <div class="social-row">
+          <a href="https://github.com/" target="_blank" class="social-btn" aria-label="GitHub">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+          </a>
+          <a href="https://linkedin.com/" target="_blank" class="social-btn" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: FORM -->
+      <div class="contact-form-wrap anim">
+        <h3 class="form-title">Send a Project Brief</h3>
+        <p class="form-sub">Fill in the details below and we'll get back to you within one business day.</p>
+
+        <div id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name *</label>
+              <input type="text" id="fname" placeholder="John" required>
             </div>
-        </div>
-    </section>
-
-    <!-- Reviews -->
-    <section class="bg-blue-50 py-16">
-        <div class="max-w-6xl mx-auto px-6">
-            <h3 class="text-3xl font-bold text-center mb-12">KHÁCH HÀNG ĐÁNH GIÁ 5⭐</h3>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-2xl shadow">
-                    <p class="mb-4">"Sửa nhanh, đúng bệnh, giá hợp lý. Gọi 30 phút là có mặt."</p>
-                    <strong>- Anh Nam, Mê Linh ⭐⭐⭐⭐⭐</strong>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow">
-                    <p class="mb-4">"Thợ làm việc chuyên nghiệp, tư vấn rõ ràng, có bảo hành."</p>
-                    <strong>- Chị Hương, Tiền Phong ⭐⭐⭐⭐⭐</strong>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow">
-                    <p class="mb-4">"Máy giặt hỏng nặng nhưng sửa xong chạy êm như mới."</p>
-                    <strong>- Anh Tuấn, Quang Minh ⭐⭐⭐⭐⭐</strong>
-                </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" placeholder="Doe">
             </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" placeholder="john@company.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="company">Company / Organization</label>
+            <input type="text" id="company" placeholder="Acme Corp">
+          </div>
+
+          <div class="form-group">
+            <label for="service">Service Interested In *</label>
+            <select id="service" required>
+              <option value="" disabled selected>Select a service…</option>
+              <option value="pcb">Hardware & PCB Design</option>
+              <option value="mechanical">Mechanical Design</option>
+              <option value="firmware">Embedded Firmware</option>
+              <option value="mobile">Mobile App Development</option>
+              <option value="fullstack">Full-Stack (Multiple Services)</option>
+              <option value="consulting">Consulting / Advisory</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="budget">Estimated Budget</label>
+            <select id="budget">
+              <option value="" disabled selected>Select a range…</option>
+              <option>Under $5,000</option>
+              <option>$5,000 – $15,000</option>
+              <option>$15,000 – $50,000</option>
+              <option>$50,000 – $100,000</option>
+              <option>$100,000+</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Project Description *</label>
+            <textarea id="message" placeholder="Briefly describe your project, goals, timeline, and any technical requirements…" required></textarea>
+          </div>
+
+          <div class="form-check">
+            <input type="checkbox" id="nda">
+            <label for="nda">I'm interested in signing an NDA before sharing project details</label>
+          </div>
+
+          <button type="button" class="form-submit" onclick="submitForm()">
+            Send Message
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
+
+          <p id="form-error" style="display:none;color:#f07040;font-size:12px;margin-top:12px;"></p>
         </div>
-    </section>
 
-    <!-- SEO Content Section -->
-    <section class="py-16 bg-white">
-        <div class="max-w-4xl mx-auto px-6">
-            <h3 class="text-3xl font-bold mb-6">Dịch Vụ Sửa Điện Tử Điện Lạnh Uy Tín Tại Nhà</h3>
-            <p class="mb-4">
-                Nếu bạn đang tìm thợ sửa điện tử điện lạnh tại nhà uy tín, giá tốt và có mặt nhanh,
-                Xuân Trường là lựa chọn phù hợp. Chúng tôi chuyên sửa tủ lạnh,
-                sửa máy giặt, sửa tivi và xử lý sự cố điện gia dụng tận nhà.
-            </p>
-            <p class="mb-4">
-                Với nhiều năm kinh nghiệm trong lĩnh vực điện lạnh - điện tử,
-                chúng tôi cam kết bắt đúng bệnh, sửa đúng lỗi, không thay linh kiện không cần thiết.
-                Báo giá trước khi làm và có phiếu bảo hành rõ ràng.
-            </p>
-            <p>
-                Phục vụ tất cả các xã thuộc khu vực Mê Linh như: Tiền Phong, Quang Minh,
-                Đại Thịnh, Thanh Lâm và các khu vực lân cận.
-            </p>
+        <div class="form-success" id="formSuccess">
+          <div class="form-success-icon">✓</div>
+          <h3>Message Sent!</h3>
+          <p>Thanks for reaching out. We'll review your brief and get back to you within one business day.</p>
         </div>
-    </section>
+      </div>
 
-    <!-- Contact Form -->
-    <section class="py-16 bg-gray-100">
-        <div class="max-w-4xl mx-auto px-6">
-            <h3 class="text-3xl font-bold text-center mb-10">GỬI YÊU CẦU SỬA CHỮA</h3>
-            <form action="https://formsubmit.co/truongtx91@gmail.com" method="POST" class="grid gap-6 bg-white p-8 rounded-2xl shadow">
-                <input type="text" name="name" placeholder="Họ và tên" required class="p-4 border rounded-xl">
-                <input type="tel" name="phone" placeholder="Số điện thoại" required class="p-4 border rounded-xl">
-                <input type="text" name="address" placeholder="Địa chỉ tại Mê Linh" required class="p-4 border rounded-xl">
-                <textarea name="message" rows="4" placeholder="Mô tả tình trạng thiết bị" class="p-4 border rounded-xl"></textarea>
-                <input type="hidden" name="_captcha" value="false">
-                <button type="submit" class="bg-blue-600 text-white py-4 rounded-2xl text-lg hover:bg-blue-700 transition">Gửi yêu cầu</button>
-            </form>
-        </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- Google Maps Mê Linh -->
-    <section class="py-16 bg-white">
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <h3 class="text-3xl font-bold mb-10">KHU VỰC PHỤC VỤ</h3>
-            <div class="rounded-2xl overflow-hidden shadow-lg">
-                <iframe src="https://www.google.com/maps?q=Mê%20Linh&output=embed" width="100%" height="400" style="border:0;" loading="lazy"></iframe>
-            </div>
-        </div>
-    </section>
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-inner">
+    <a href="#" class="footer-logo">THTech</a>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <p class="footer-copy">© 2026 THTech. All rights reserved.</p>
+  </div>
+</footer>
 
-    <!-- Zalo Floating Button -->
-    <a href="https://zalo.me/0356299082" target="_blank" 
-       class="fixed bottom-6 right-6 bg-blue-600 text-white px-5 py-3 rounded-full shadow-lg hover:bg-blue-700 transition z-50">
-        Chat Zalo
-    </a>
+<script>
+  /* ── Scroll animations ── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
 
-    <!-- Footer -->
-    <footer class="bg-gray-100 py-6 text-center text-gray-600">
-        © 2026 Điện Tử - Điện Lạnh Xuân Trường
-    </footer>
+  document.querySelectorAll('.anim').forEach((el, i) => {
+    el.style.transitionDelay = (i % 4) * 80 + 'ms';
+    observer.observe(el);
+  });
 
+  /* ── Active nav highlight ── */
+  const sections = document.querySelectorAll('section[id]');
+  const navAs = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 200) cur = s.id; });
+    navAs.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--cyan)' : '';
+    });
+  });
+
+  /* ── Cursor glow ── */
+  const glow = document.createElement('div');
+  Object.assign(glow.style, {
+    position:'fixed', pointerEvents:'none', zIndex:'9997',
+    width:'320px', height:'320px', borderRadius:'50%',
+    background:'radial-gradient(circle, rgba(0,212,232,0.04) 0%, transparent 70%)',
+    transform:'translate(-50%,-50%)', transition:'opacity .3s'
+  });
+  document.body.appendChild(glow);
+  document.addEventListener('mousemove', e => { glow.style.left = e.clientX+'px'; glow.style.top = e.clientY+'px'; });
+
+  /* ── Form submission ── */
+  function submitForm() {
+    const fname   = document.getElementById('fname').value.trim();
+    const email   = document.getElementById('email').value.trim();
+    const service = document.getElementById('service').value;
+    const message = document.getElementById('message').value.trim();
+    const errEl   = document.getElementById('form-error');
+
+    errEl.style.display = 'none';
+
+    if (!fname) { showErr('Please enter your first name.'); return; }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showErr('Please enter a valid email address.'); return; }
+    if (!service) { showErr('Please select a service.'); return; }
+    if (!message) { showErr('Please describe your project.'); return; }
+
+    // Simulate async send
+    const btn = document.querySelector('.form-submit');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    setTimeout(() => {
+      document.getElementById('contactForm').style.display = 'none';
+      document.getElementById('formSuccess').classList.add('show');
+    }, 1200);
+  }
+
+  function showErr(msg) {
+    const el = document.getElementById('form-error');
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+</script>
 </body>
 </html>
